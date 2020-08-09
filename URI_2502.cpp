@@ -6,16 +6,14 @@ using namespace std;
 int minusculo(char c);
 int maiusculo(char c);
 
-int main()
-{
+int main(){
 	string a , b;
 	int x , y ;
 	int criptografia[1000];
 
 	while(	scanf("%d %d", &x , &y) == 2){
 
-		for (int i = 0; i < 1000; i++)
-		{
+		for (int i = 0; i < 1000; i++){
 			criptografia[i] = i;
 		}
 
@@ -26,8 +24,7 @@ int main()
 		getline (cin ,b);
 
 
-		for(int i = 0 ; i < (int)a.size() ; i ++ )
-		{
+		for(int i = 0 ; i < (int)a.size() ; i ++ ){
 			criptografia[(int)a[i]] = maiusculo(b[i]);
 			if (a[i] <= 'Z' && a[i] >='A' )
 				criptografia['a'+(a[i]-'A')] = minusculo(b[i]);
@@ -36,16 +33,12 @@ int main()
 				criptografia['a'+(b[i]-'A')] = minusculo(a[i]);
 		}
 
-		for(int i = 0 ; i < y ; i ++)
-		{
+		for(int i = 0 ; i < y ; i ++){
 			getline(cin , a);
 			string saida = "";
-			for (int j = 0; j < (int)a.size(); j++)
-			{
-				if (  a[j] <='Z' && a[j] >= 'A')
-					saida += maiusculo(criptografia[(int)a[j]]);
-				else
-					saida += minusculo(criptografia[(int)a[j]]);
+			for (int j = 0; j < (int)a.size(); j++){
+				if (  a[j] <='Z' && a[j] >= 'A') saida += maiusculo(criptografia[(int)a[j]]);
+				else saida += minusculo(criptografia[(int)a[j]]);
 			}
 			cout << saida << endl;
 
@@ -57,15 +50,13 @@ int main()
 }
 
 
-int minusculo(char c)
-{
+int minusculo(char c){
 	if (c <= 'Z' && c >= 'A')
 		return 'a' + c-'A' ;
 	return c;
 }
 
-int maiusculo(char c)
-{
+int maiusculo(char c){
 	if (c <= 'z' && c >= 'a')
 		return 'A' + c - 'a';
 	return c;
