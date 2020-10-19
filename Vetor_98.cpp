@@ -3,6 +3,7 @@ using namespace std;
 #define NUM 10
 
 main(){
+    setlocale(LC_ALL, "portuguese-brazilian");
     int a[NUM], b[NUM], v[NUM*2];
 
     for(int i =0;i<NUM;i++){
