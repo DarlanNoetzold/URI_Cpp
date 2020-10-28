@@ -4,5 +4,5 @@
 ## Exercícios da plataforma URI Online Judge
 * Conjunto de algoritmos feitos e submetidos na plataforma **URI Online Judge**, com o objetivo de exercitar a linguagem C++.
 <p align="center">
-  <img src="https://github.com/DarlanNoetzold/URI_Cpp/blob/master/download.png" width="350">
+  <img src="https://github.com/DarlanNoetzold/URI_Cpp/blob/master/download.png" width="200">
 </p>
