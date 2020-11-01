@@ -9,9 +9,10 @@ main(){
     cout<<"Informe o código do Produto : ";
     cin>>cod;
     cout<<"\nInforme a descrição do Produto : ";
-    cin>>desc;
+    cin.ignore();
+    getline(cin,desc);
     cout<<"\nInforme a categoria do Produto : ";
-    cin>>cat;
+    getline(cin,cat);
     cout<<"\nInforme o tamanho do Produto : ";
     cin>>tam;
     cout<<"\nInforme o preço do Produto : ";
