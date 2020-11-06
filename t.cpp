@@ -5,11 +5,11 @@ main(){
     int countl = 6, count2 =2, trabY = 7, varX = 7;
     while(countl <10){
         varX = varX + 5;       //12, 17
-        countl = countl +2;
+        countl = countl +2;    //8,10
         while (count2 < 10){
 
             trabY = trabY + 2;    //9,11,13,15
-            count2 = count2 + 2;
+            count2 = count2 + 2;  //4,6,8,10
         }
     }
     cout<<"\n traby: "<<trabY<<"\n  varx: "<<varX;
