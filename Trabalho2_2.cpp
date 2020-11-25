@@ -1,7 +1,7 @@
 #include<iostream>
 
 using namespace std;
-#define NUM 3
+#define NUM 10
 
 int Contas[NUM];
 float Saldo[NUM];
@@ -49,7 +49,7 @@ main(){
         cin>>Contas[l];
         for (int j = 0; j <l;j++){
             if(Contas[l] == Contas[j]){
-                cout<<"Esta conta jás existe!\n";
+                cout<<"Esta conta já existe!\n";
                 l--;
                 break;
             }
