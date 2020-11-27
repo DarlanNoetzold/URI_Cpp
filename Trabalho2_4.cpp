@@ -1,7 +1,7 @@
 #include<iostream>
 
 using namespace std;
-#define NUM 3
+#define NUM 10
 
 int Produtos[NUM];
 float Estoque[NUM];
@@ -9,7 +9,6 @@ float Estoque[NUM];
 int atualizaEstoque(int quantProd, int codProd){
     for(int i = 0; i < NUM; i++){
         if(i == codProd-1){
-                cout<<i<<"----\n";
             Estoque[i] = Estoque[i] - quantProd;
             return Estoque[i];
         }
@@ -27,7 +26,7 @@ bool verificaCodProd(int codProd){
 
 mostraTudo(){
     for(int i = 0; i< NUM; i++){
-        cout<<"Produdo "<<Produtos[i]<<": "<<Estoque[i]<<".\n";;
+        cout<<"Produdo "<<Produtos[i]<<": Estoque "<<Estoque[i]<<".\n";;
     }
 }
 
@@ -49,29 +48,29 @@ main(){
         cin>>Estoque[i];
     }
     int codCli=1, codProd,quantProd;
-        while(true){
-            cout<<"Digite o código do cliente (0 para sair): ";
-            cin>>codCli;
-            if(codCli == 0){
-                break;
-            }
-            cout<<"Digite o código do produto que o cliente deseja comprar: ";
-            cin>>codProd;
-            if(verificaCodProd(codProd)){
-                cout<<"Código existente!\n";
-                cout<<"Digite a quantidade que o cliente deseja: ";
-                cin>>quantProd;
-                if(Estoque[(codProd-1)] >= quantProd){
-                    cout<<"Pedido atendido, volte sempre!\n";
-                    cout<<"Novo estoque do produto: "<<atualizaEstoque(quantProd,codProd)<<".\n";
-                    mostraTudo();
-                }else{
-                    cout<<"Não temos estoque suficiente dessa mercadoria! \n";
-                }
-            }else{
-                cout<<"Código inexistente!\n";
-            }
+    while(true){
+        cout<<"Digite o código do cliente (0 para sair): ";
+        cin>>codCli;
+        if(codCli == 0){
+            break;
         }
+        cout<<"Digite o código do produto que o cliente deseja comprar: ";
+        cin>>codProd;
+        if(verificaCodProd(codProd)){
+            cout<<"Código existente!\n";
+            cout<<"Digite a quantidade que o cliente deseja: ";
+            cin>>quantProd;
+            if(Estoque[(codProd-1)] >= quantProd){
+                cout<<"Pedido atendido, volte sempre!\n";
+                cout<<"Novo estoque do produto: "<<atualizaEstoque(quantProd,codProd)<<".\n";
+            }else{
+                cout<<"Não temos estoque suficiente dessa mercadoria! \n";
+            }
+        }else{
+            cout<<"Código inexistente!\n";
+        }
+    }
+    mostraTudo();
 }
 
 
