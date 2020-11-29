@@ -55,7 +55,7 @@ main(){
 
         cout<<"Deseja reservar mais poltronas? (S/N): ";
         cin>>op;
-    }while(op == 'S');
+    }while(op == 'S' || op == 's');
 
     cout<<"\n\nObrigado\n\n\n"<<endl;
 }

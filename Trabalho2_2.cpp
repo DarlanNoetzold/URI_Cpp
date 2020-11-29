@@ -12,6 +12,7 @@ void deposito(int cod, int val){
         if(cod == Contas[j]){
             Saldo[j]+= val;
             cont=1;
+            cout<<"Deposito realizado com sucesso!\n";
         }
     }
     if(cont == 0){
@@ -29,6 +30,7 @@ void saque(int cod, int val){
             }
             Saldo[j] -= val;
             cont=1;
+            cout<<"Saque realizado com sucesso!\n";
         }
     }
     if(cont == 0){

@@ -64,7 +64,7 @@ main(){
                 cout<<"Pedido atendido, volte sempre!\n";
                 cout<<"Novo estoque do produto: "<<atualizaEstoque(quantProd,codProd)<<".\n";
             }else{
-                cout<<"Não temos estoque suficiente dessa mercadoria! \n";
+                cout<<"Não temos estoque suficiente dessa mercadoria!  \n";
             }
         }else{
             cout<<"Código inexistente!\n";
