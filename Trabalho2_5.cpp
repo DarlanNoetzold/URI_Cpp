@@ -3,23 +3,26 @@
 using namespace std;
 
 
-int Lugares[12][4];
+int LugaresD[12][2];
+int LugaresE[12][2];
 
 void preencherMat(){
     for(int l = 1; l <= 12; l++){
-        for(int c = 1; c <= 4; c++){
-            Lugares[l][c] = 0;
+        for(int c = 1; c <= 2; c++){
+            LugaresD[l][c] = 0;
+        }
+    }
+    for(int l = 1; l <= 12; l++){
+        for(int c = 1; c <= 2; c++){
+            LugaresE[l][c] = 0;
         }
     }
 }
 
 void mostrar(){
     for(int l = 1; l <= 12; l++){
-        for(int c = 1; c <= 4; c++){
-            cout<<"|"<<Lugares[l][c];
-            if(c==2){
-                cout<<"|--";
-            }
+        for(int c = 1; c <= 2; c++){
+            cout<<"|"<<LugaresD[l][c]<<"--"<<LugaresE[l][c];
         }
         cout<<"|\n";
     }
@@ -28,8 +31,9 @@ void mostrar(){
 bool testaOni(){
     int cont = 0;
     for(int l = 1; l <= 12; l++){
-        for(int c = 1; c <= 4; c++){
-            cont += Lugares[l][c];
+        for(int c = 1; c <= 2; c++){
+            cont += LugaresD[l][c];
+            cont += LugaresE[l][c];
         }
     }
     if(cont==48){
@@ -43,7 +47,7 @@ bool testaOni(){
 void vendPas(int lug){
     if(testaOni()){
         for(int l = 1; l <= 12; l++){
-            for(int c = 1; c <= 4; c++){
+            for(int c = 1; c <= 2; c++){
                 if((l*c) == lug){
                     if(Lugares[l][c]==0){
                         Lugares[l][c] = 1;
