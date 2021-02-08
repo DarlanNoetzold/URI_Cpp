@@ -18,12 +18,12 @@ main(){
     }else if(sexo == 'M' || sexo == 'm'){
         imc = (72.7 * h) - 58;
     }
-    cout<<imc;
+    cout<<"O peso ideal mediano para sua altura é "<<imc;
     if(p <= (imc+3) && p >= (imc-3)){
-        cout<<"\nVocê está no peso ideal!";
+        cout<<"\n\nVocê está no peso ideal!";
     }else if(p > (imc+3)){
-        cout<<"\nVocê está acima do peso!";
+        cout<<"\n\nVocê está acima do peso!";
     }else if(p < (imc-3)){
-        cout<<"\nVocê está abaixo do peso!";
+        cout<<"\n\nVocê está abaixo do peso!";
     }
 }

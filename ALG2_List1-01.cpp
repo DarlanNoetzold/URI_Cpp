@@ -2,6 +2,9 @@
 
 using namespace std;
 
+//OBS: Aprendi Struct a pouco tempo, este foi o meu primeiro c?digo usando. Mas tenho experi?ncia com Java POO.
+//Mesmo assim n?o sei se fiz certo, mas resolvi arriscar.
+
 struct Lanche{
     string nome;
     int quantidade;

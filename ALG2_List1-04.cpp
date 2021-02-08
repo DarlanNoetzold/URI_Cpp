@@ -27,9 +27,11 @@ void ordena(){
     sort(v, v+NUM);
 }
 void mostrar(){
+    cout<<"\n\n   -->> ";
     for(int i = 0; i< NUM; i++){
         cout<<"|"<<v[i];
     }
+    cout<<" <<--\n";
 }
 main(){
     srand(time(NULL));
