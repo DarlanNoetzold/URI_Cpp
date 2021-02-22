@@ -63,7 +63,10 @@ main(){
                 if(leu == 0)
                     cout<<"E necessario ler o valor primeiro! ";
                 else{
-                    verificaPrimo(val);
+                    if(val > 0 && val <= 999)
+                        verificaPrimo(val);
+                    else
+                        cout<<"Valor invalido para esta funcao!";
                 }
                 getchar();
                 break;
@@ -74,6 +77,11 @@ main(){
                 else{
                     cout << "A soma dos algarismos e: " << calcula(val) << endl;
                 }
+                getchar();
+                break;
+            default:
+                system("cls");
+                cout<<"Opcao invalida!";
                 getchar();
                 break;
         };
