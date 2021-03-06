@@ -70,7 +70,6 @@ main()
             eusouespecial++;
         }
     }
-    //se for caractere especial reinicia o programa
     if (eusouespecial > 0 || branco > 0 || numero > 0)
     {
         cout<< "Palavras informadas com caracteres especiais!" << endl;
@@ -97,10 +96,8 @@ main()
         }
 
 
-        //imprime as palavras/strings
         cout<< "Palavra/String 1: " << string1 << endl;
         cout<< "Palavra/String 2: " << string2 << endl;
-        //imprime os caracteres iguais
         cout<< "Caracteres nas duas palavras/strings: " << endl;
         for(int i = 0; i< 2; i++){
             cout<<letrasIguais[i]<<"\n";
