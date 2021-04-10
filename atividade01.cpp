@@ -10,7 +10,6 @@ main(){
             p=x;
             for(j = i + 1; j < i; j++){
                 p = p * x;
-                cout<<"teste "<<i;
             }
             soma = soma + a[i] * p;
         }
