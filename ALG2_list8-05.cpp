@@ -12,10 +12,11 @@ void leitura(float (*notas)[3], int tam){
 
 void mostrar(float (*notas)[3], int tam){
     for(int i = 0; i < tam; i++){
+         cout << "Aluno "<<i<<": ";
         for(int j = 0; j < 3; j++){
             cout << notas[i][j] << "\t";
         }
-        cout << "\nAluno "<<i<<": ";
+       cout<<endl;
     }
 }
 
@@ -89,7 +90,7 @@ main(){
                 cout<<"Digite quantos alunos voc? quer registrar: ";
                 cin>>tam;
                 notas = new float[tam][3];
-                leitura((&notas)[3], tam);
+                leitura(notas, tam);
                 getchar();
                 break;
             case 2 :
@@ -97,7 +98,7 @@ main(){
                 if(indice < 0)
                     cout << "E necessario ler valores de v3";
                 else{
-                    mostrar((&notas)[3], tam);
+                    mostrar(notas, tam);
                 }
                 getchar();
                 break;
@@ -106,7 +107,7 @@ main(){
                 if(indice < 0)
                     cout << "E necessario ler valores de v3";
                 else
-                    mostrarMarMenor((&notas)[3], tam);
+                    mostrarMarMenor(notas, tam);
                 getchar();
                 break;
 
@@ -115,7 +116,7 @@ main(){
                 if(indice < 0)
                     cout << "E necessario ler valores primeiro";
                 else
-                    mostrarDiv((&notas)[3], tam);
+                    mostrarDiv(notas, tam);
                 getchar();
                 break;
         };
