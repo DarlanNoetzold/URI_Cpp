@@ -4,6 +4,7 @@
         "ostream": "cpp",
         "ratio": "cpp",
         "chrono": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "new": "cpp"
     }
 }
