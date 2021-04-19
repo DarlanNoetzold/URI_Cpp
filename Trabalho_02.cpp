@@ -46,5 +46,5 @@ main(){
     cout<<" | ";
 
     cout<<"\nTiveram "<<neg<<" temperaturas negativas.\n";
-    cout<<"\nA média das temperaturas máximas foi: "<< media<< " sendo que "<< mesesMaiores<< " meses tiveram a temperatura maior que a média.\n\n\n";
+    cout<<"\nA media das temperaturas maximas foi: "<< media<< " sendo que "<< mesesMaiores<< " meses tiveram a temperatura maior que a média.\n\n\n";
 }

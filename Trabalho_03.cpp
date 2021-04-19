@@ -92,6 +92,8 @@ main(){
     int *minutoFi = new int;
     int *segundoFi = new int;
 
+
+    
     ajustaHoraFin(horaF, &horaFi, &minutoFi, &segundoFi);
     bool validateHoraFinal = true;
     if(*horaFi > 24 || *minutoFi > 60 || *segundoFi > 60 || *horaFi < 0 || *minutoFi < 0 || *segundoFi < 0){
