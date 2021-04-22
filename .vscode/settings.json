@@ -5,6 +5,7 @@
         "ratio": "cpp",
         "chrono": "cpp",
         "cmath": "cpp",
-        "new": "cpp"
+        "new": "cpp",
+        "fstream": "cpp"
     }
 }
