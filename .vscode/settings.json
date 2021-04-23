@@ -6,6 +6,8 @@
         "chrono": "cpp",
         "cmath": "cpp",
         "new": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "iosfwd": "cpp",
+        "*.tcc": "cpp"
     }
 }
