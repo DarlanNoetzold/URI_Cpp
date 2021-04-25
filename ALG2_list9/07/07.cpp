@@ -3,14 +3,14 @@ using namespace std;
 
 void gerarValores(int vetor[50]){
     int i=0;
-    for(i;i<50;i++){
+    for(i=0;i<50;i++){
         *vetor = rand()%200;
         vetor++;
     }
     vetor -= i;
     i=0;
 
-    sort(*vetor, *vetor+50);
+    sort(vetor, vetor+50);
 
     ofstream escreve("teste.txt", ios::out);
     while(i < 50){
@@ -31,6 +31,7 @@ void mostrarValores(){
         cout<<numChar<<"\n";
         aux++;
     }
+    ler.close();
 }
 
 void mostrarQuant(){
@@ -42,7 +43,8 @@ void mostrarQuant(){
         aux++;
     }
 
-    cout<<"Existem "<<aux<<" valores no arquivo!";
+    cout<<"Existem "<<aux-1<<" valores no arquivo!";
+    ler.close();
 }
 
 void somarValores(){
@@ -59,11 +61,45 @@ void somarValores(){
     }
 
     cout<<"A soma dos valores eh: "<< soma;
+    ler.close();
 }
 
-void inserirValores(){
+void inserirValores(int num){
+    char numChar[4];
+    int aux=0,soma=0, posicao=0, aux2=0, vetorAux[10000];
+    ifstream ler("teste.txt", ios::in);
+    while(!ler.fail()){
+        ler.getline(numChar,10, '\n');
 
+        int numAtual = atoi(numChar);
+        vetorAux[aux] = numAtual;
+        if(numAtual > num && aux2 == 0){
+            posicao = aux;
+            aux2++;
+        }
+        aux++;
+    }
+    ler.close();
+    ofstream escreve("teste.txt", ios::out);
+    int i =0;
+    if(num == 0){
+        escreve << num;
+    }
+    while(i < (aux -2)){
+        escreve << vetorAux[i]<<"\n";
+
+        if(i == (posicao -1)){
+            escreve << num << "\n";
+            i++;
+        }
+        i++;
+    }
+    if(num >= 200){
+        escreve << num;
+    }
+    escreve.close();
 }
+
 
 main(){
     srand(time(NULL));
@@ -98,6 +134,7 @@ main(){
             case 2 :
                 system("cls");
                 mostrarValores();
+                getchar();
                 break;
             case 3 : 
                 system("cls");
@@ -111,7 +148,10 @@ main(){
                 break;
             case 5 :
                 system("cls");
-                inserirValores();
+                int num;
+                cout<<"Digite um n?mero para inserir no arquivo: ";
+                cin>> num;
+                inserirValores(num);
                 getchar();
                 break;
         };
