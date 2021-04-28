@@ -26,6 +26,7 @@ void gerarVet(){
 void ordena(){
     sort(v, v+NUM);
 }
+
 void mostrar(){
     cout<<"\n\n   -->> ";
     for(int i = 0; i< NUM; i++){
@@ -33,6 +34,7 @@ void mostrar(){
     }
     cout<<" <<--\n";
 }
+
 main(){
     srand(time(NULL));
     setlocale(LC_ALL, "portuguese-brazilian");
