@@ -5,17 +5,18 @@ main(){
     cout<<"Digite o nome de uma cidade: ";
     cin>>cidade;
     int aux=0;
-    ifstream ler('cidade.txt',ios::in);
+    ifstream ler("cidade.txt",ios::in);
     char numChar[30];
     while(!ler.fail()){
-        ler.getline(numChar,30, ',');
+        ler.getline(numChar,30, '\n');
         if(!strcmp(numChar, cidade)){
-            cout<<"A cidade j? existe!";
+            cout<<"A cidade ja existe!";
             aux++;
         }
     }
     if(aux==0){
-        ofstream escreve('cidade.txt', ios::app);
-        escreve << cidade;
+        cout<<"Acidade foi adicionada!"<<endl;
+        ofstream escreve("cidade.txt", ios::app);
+        escreve << cidade << '\n';
     }
 }
