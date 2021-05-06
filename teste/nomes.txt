@@ -1,0 +1,5 @@
+Pedro da Silva;8.0;82
+Ana Maria Braga;3.6;62
+Fernando Miranda;5.8;78
+Gilberto Medeiros;7.9;83
+Marilia Teixeira;8;100
