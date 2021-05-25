@@ -43,7 +43,7 @@ void mostrarQuant(){
         aux++;
     }
 
-    cout<<"Existem "<<aux-1<<" valores no arquivo!";
+    cout<<"Existem "<<aux-1<<" valores no arquivo!!";
     ler.close();
 }
 
@@ -60,7 +60,7 @@ void somarValores(){
         aux++;
     }
 
-    cout<<"A soma dos valores eh: "<< soma;
+    cout<<"A soma dos valores e: "<< soma;
     ler.close();
 }
 
@@ -91,6 +91,7 @@ void inserirValores(int num){
         if(i == (posicao -1)){
             escreve << num << "\n";
             i++;
+
         }
         i++;
     }

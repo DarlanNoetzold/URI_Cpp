@@ -13,6 +13,8 @@ main(){
         cout << x;
         aux++;
     }
+
+    
     cout<<"\nForam lidos "<<aux<<" caracteres."<<endl;
     
 }
