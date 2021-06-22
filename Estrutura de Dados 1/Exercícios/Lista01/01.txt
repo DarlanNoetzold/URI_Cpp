@@ -1,0 +1,9 @@
+1) Na linguagem C++, ? poss?vel realizar aloca??es de mem?ria utilizando
+aloca??o din?mica ou est?tica. Assinale a alternativa que representa
+uma aloca??o din?mica de um vetor do tipo primitivo double com 10
+posi??es na linguagem C++.
+
+a. double *vd = new double[10];   <--- Resposta Correta
+b. double vd = new double[10];
+c. double *vd = new double[];
+d. *vd = new double[10];
