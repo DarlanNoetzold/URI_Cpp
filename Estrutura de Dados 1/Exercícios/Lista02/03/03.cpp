@@ -50,6 +50,10 @@ void rotina(Pilha p, int *indiceP, int **vet, int t){
                         cout<<"valor inserido!"<<endl;
                         if(t == 1){
                             (*vet)[*indiceP] = valor;
+                            (*indiceP) += 1;
+                        }else if(t == 2){
+                            (*vet)[*indiceP] = valor;
+                            (*indiceP) -= 1;
                         }
                         getchar();
                     }else{
@@ -66,6 +70,13 @@ void rotina(Pilha p, int *indiceP, int **vet, int t){
                 }else{
                     if(desempilhar(&p, &valor)){
                         cout<<"O valor desempilhado "<<valor<<endl;
+                        if(t == 1){
+                            (*vet)[((*indiceP)-1)] = 0;
+                            (*indiceP) -= 1;
+                        }else if(t == 2){
+                            (*vet)[((*indiceP)+1)] = 0;
+                            (*indiceP) += 1;
+                        }
                     }else{
                         cout<<"pilha vazia"<<endl;
                     }
@@ -110,8 +121,11 @@ main(){
     Pilha p1;
     Pilha p2;
     int *vet = new int[10];
+    for(int i = 0; i < 10; i++){
+        vet[i] == 0;
+    }
     int pilha = 0;
-    int indiceP1 = 0, indiceP2=0;
+    int indiceP1 = 0, indiceP2=9;
     do{
         cout<<"Voce deseja administrar qual pilha? 1, 2 ou 0 para sair: ";
         cin>>pilha;
@@ -122,7 +136,10 @@ main(){
         }
     }while(pilha != 0);
 
-    
+    cout<<"Vetor de pilhas: ";
+    for(int i = 0; i < 10; i++){
+        cout<<vet[i]<<" |";
+    }
     desalocar(&p1);
     desalocar(&p2);
 }
