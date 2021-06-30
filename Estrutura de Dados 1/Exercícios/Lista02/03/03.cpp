@@ -3,14 +3,9 @@ using namespace std;
 
 #include "pilha.hpp"
 
-main(){
-    setlocale(LC_ALL, "Portuguese");
-
-    Pilha p1;
-    int tamPilha, valor;
-
+void rotina(Pilha p, int indiceP){
+    int valor;
     int menu = -1, indice = 0;
-
     do{
         system("cls");
         cout << "###############MENU###############" << endl;
@@ -35,15 +30,11 @@ main(){
                 system("cls");
                 
                 if(indice == 0){
-                    cout<<"Digite o tamanho da pilha: ";
-                    cin>>tamPilha;
-                    inicializa(&p1, tamPilha);
+                    inicializa(&p, 5);
                     indice++;
                 }else{
-                    desalocar(&p1);
-                    cout<<"Digite o tamanho da pilha: ";
-                    cin>>tamPilha;
-                    inicializa(&p1, tamPilha);
+                    desalocar(&p);
+                    inicializa(&p, 5);
                     indice++;
                 }
                 getchar();
@@ -55,11 +46,11 @@ main(){
                 }else{
                     cout<<"Digite o valor: ";
                     cin>>valor;
-                    if(!(buscar(&p1, valor)) && empilhar(&p1, valor)){
+                    if(!(buscar(&p, valor)) && empilhar(&p, valor)){
                         cout<<"valor inserido!"<<endl;
                         getchar();
                     }else{
-                        cout<<"pilha cheia ou valor j? existente"<<endl;
+                        cout<<"pilha cheia ou valor ja existente"<<endl;
                         getchar();
                     }
                 }
@@ -70,7 +61,7 @@ main(){
                 if(indice == 0){
                     cout<<"Inicialize priemrio a pilha!"<<endl;
                 }else{
-                    if(desempilhar(&p1, &valor)){
+                    if(desempilhar(&p, &valor)){
                         cout<<"O valor desempilhado "<<valor<<endl;
                     }else{
                         cout<<"pilha vazia"<<endl;
@@ -86,7 +77,7 @@ main(){
                 }else{
                     cout<<"Digite o valor: ";
                     cin>>valor;
-                    if(buscar(&p1, valor)){
+                    if(buscar(&p, valor)){
                         cout << "O valor " << valor << " foi encontrado na pilha!\n";
                         getchar();
                     }else{
@@ -101,13 +92,34 @@ main(){
                 if(indice == 0){
                     cout<<"Inicialize primeiro a pilha!"<<endl;
                 }else{
-                    mostrar(&p1);
+                    mostrar(&p);
                 }
                 getchar();
                 break;
         };
 
     }while(menu != 0);
+}
+
+main(){
+    setlocale(LC_ALL, "Portuguese");
+
+    Pilha p1;
+    Pilha p2;
+    int vet[2];
+    int pilha = 0;
+    int indiceP1 = 0, indiceP2=0;
+    do{
+        cout<<"Voce deseja administrar qual pilha? 1, 2 ou 0 para sair: ";
+        cin>>pilha;
+        if(pilha == 1){
+            rotina(p1, indiceP1);
+        }else if(pilha == 2){
+            rotina(p2, indiceP2);
+        }
+    }while(pilha != 0);
+
     
     desalocar(&p1);
+    desalocar(&p2);
 }
