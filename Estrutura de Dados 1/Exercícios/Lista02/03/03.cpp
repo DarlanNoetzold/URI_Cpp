@@ -3,7 +3,7 @@ using namespace std;
 
 #include "pilha.hpp"
 
-void rotina(Pilha p, int indiceP){
+void rotina(Pilha p, int *indiceP, int **vet, int t){
     int valor;
     int menu = -1, indice = 0;
     do{
@@ -48,6 +48,9 @@ void rotina(Pilha p, int indiceP){
                     cin>>valor;
                     if(!(buscar(&p, valor)) && empilhar(&p, valor)){
                         cout<<"valor inserido!"<<endl;
+                        if(t == 1){
+                            (*vet)[*indiceP] = valor;
+                        }
                         getchar();
                     }else{
                         cout<<"pilha cheia ou valor ja existente"<<endl;
@@ -106,16 +109,16 @@ main(){
 
     Pilha p1;
     Pilha p2;
-    int vet[2];
+    int *vet = new int[10];
     int pilha = 0;
     int indiceP1 = 0, indiceP2=0;
     do{
         cout<<"Voce deseja administrar qual pilha? 1, 2 ou 0 para sair: ";
         cin>>pilha;
         if(pilha == 1){
-            rotina(p1, indiceP1);
+            rotina(p1, &indiceP1, &vet, 1);
         }else if(pilha == 2){
-            rotina(p2, indiceP2);
+            rotina(p2, &indiceP2, &vet, 2);
         }
     }while(pilha != 0);
 
