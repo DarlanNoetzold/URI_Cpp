@@ -3,25 +3,39 @@ using namespace std;
 
 #include "pilha.hpp"
 
-bool verificaExp(string exp){
+bool verificaExp(char exp[50]){
     Pilha p;
+    inicializa(&p, 15);
     bool balanced = true;
-    int index = 0;
+    int index = 0, auxAbre=0, auxFecha=0;
     char valor;
-    while(index < exp.length() && balanced){
+    while(index < strlen(exp)){
         char symbol = exp[index];
         if(symbol == '('){
+            auxAbre++;
             empilhar(&p, symbol);
         }else if(symbol ==')'){
+            auxFecha++;
             if(buscar(&p, '(')){
-                balanced == true;
+                if(auxAbre > 1){
+                    balanced = false;
+                    auxAbre--;
+                    desempilhar(&p, &valor);
+                }else{
+                    if(auxFecha > 1){
+                        balanced == false;
+                        auxFecha--;
+                    }else{
+                        balanced == true;
+                    }
+                }
             }else{
-                balanced == false;
+                return false;
             }
         }
-        index = index + 1;
+        index++;
     }
-    if(balanced && vazia(&p)){
+    if(balanced){
         return true;
     }else{
         return false;
@@ -39,6 +53,9 @@ main(){
     cin>>exp;
 
     
-
-    cout<<verificaExp(exp);
+    if(verificaExp(exp)){
+        cout<<"Expressao correta!"<<endl;
+    }else{
+        cout<<"Expressao incorreta!"<<endl;
+    }
 }
