@@ -3,11 +3,13 @@ using namespace std;
 
 #include "pilha.hpp"
 #include "caixa.hpp"
+
 main(){
     setlocale(LC_ALL, "Portuguese");
 
     Pilha p1;
-    int tamPilha, valor;
+    int tamPilha;
+    Caixa valor;
 
     int menu = -1, indice = 0;
 
@@ -18,7 +20,6 @@ main(){
         cout << "# 1 - Criar Pilha                #" << endl;
         cout << "# 2 - Inserir                    #" << endl;
         cout << "# 3 - Remover                    #" << endl;
-        cout << "# 4 - Consultar                  #" << endl;
         cout << "# 5 - Mostrar                    #" << endl;
         cout << "##################################" << endl;
         cout << "Sua escolha: ";
@@ -53,9 +54,11 @@ main(){
                 if(indice < 0){
                     cout << "E necessario criar uma pilha"<<endl;
                 }else{
-                    cout<<"Digite o valor: ";
-                    cin>>valor;
-                    if(!(buscar(&p1, valor)) && empilhar(&p1, valor)){
+                    cout<<"Digite o Codigo da caixa: ";
+                    cin>>valor.codigo;
+                    cout<<"Digite o peso da caixa: ";
+                    cin>>valor.peso;
+                    if(empilhar(&p1, valor)){
                         cout<<"valor inserido!"<<endl;
                         getchar();
                     }else{
@@ -71,7 +74,7 @@ main(){
                     cout<<"Inicialize priemrio a pilha!"<<endl;
                 }else{
                     if(desempilhar(&p1, &valor)){
-                        cout<<"O valor desempilhado "<<valor<<endl;
+                        cout<<"O valor desempilhado "<<valor.codigo<<endl;
                     }else{
                         cout<<"pilha vazia"<<endl;
                     }
@@ -81,19 +84,7 @@ main(){
 
             case 4 :
                 system("cls");
-                if(indice == 0){
-                    cout<<"Inicialize primeiro a pilha!"<<endl;
-                }else{
-                    cout<<"Digite o valor: ";
-                    cin>>valor;
-                    if(buscar(&p1, valor)){
-                        cout << "O valor " << valor << " foi encontrado na pilha!\n";
-                        getchar();
-                    }else{
-                        cout << "O valor " << valor << " NAO foi encontrado na pilha!\n";
-                        getchar();
-                    }
-                }
+                
                 getchar();
                 break;
             case 5 :
