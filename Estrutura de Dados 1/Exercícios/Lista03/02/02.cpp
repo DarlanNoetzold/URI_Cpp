@@ -6,10 +6,10 @@ using namespace std;
 main(){
     setlocale(LC_ALL, "Portuguese");
 
-    Pilha p1;
-    int tamPilha, valor;
+    Pilha p1, aux;
+    int  valor, novoValor;
 
-    int menu = -1, indice = 0;
+    int menu = -1, indice = 0, indiceVal=0;
 
     do{
         system("cls");
@@ -50,13 +50,32 @@ main(){
                     cout << "E necessario criar uma pilha"<<endl;
                 }else{
                     cout<<"Digite o valor: ";
-                    cin>>valor;
-                    if(!(buscar(&p1, valor)) && empilhar(&p1, valor)){
-                        cout<<"valor inserido!"<<endl;
-                        getchar();
+                    cin>>novoValor;
+                    inicializa(&aux);
+                    if(indiceVal == 0){
+                        if(empilhar(&p1, novoValor)){
+                            cout<<"valor inserido!"<<endl;
+                            getchar();
+                            indiceVal++;
+                        }
                     }else{
-                        cout<<"pilha cheia ou valor ja existente"<<endl;
-                        getchar();
+                        for(int i = 0; i < indiceVal; i++){
+                            espiar(&p1, &valor);
+                            while(novoValor < valor && !(vazia(&p1))){
+                                desempilhar(&p1, &valor);
+                                empilhar(&aux, valor);
+                            }
+
+                            if(novoValor >= valor || vazia(&p1)){
+                                getchar();
+                                empilhar(&p1, novoValor);
+                                while(desempilhar(&aux, &valor)){
+                                    empilhar(&p1, valor);
+                                }
+                            }
+                            
+                            
+                        }
                     }
                 }
                 getchar();
@@ -68,6 +87,7 @@ main(){
                 }else{
                     if(desempilhar(&p1, &valor)){
                         cout<<"O valor desempilhado "<<valor<<endl;
+                        
                     }else{
                         cout<<"pilha vazia"<<endl;
                     }

@@ -5,7 +5,7 @@
 
 struct No
 {
-    int dado; //informacao do nó
+    char dado; //informacao do nó
     No *prox; //proximo elemento da pilha
 };
 
@@ -38,7 +38,7 @@ bool vazia(Pilha *p)
 
 
 //push
-bool empilhar(Pilha *p, int dado)
+bool empilhar(Pilha *p, char dado)
 {
     No *novo =  new No(); //cria um novo nó
     if (!novo) /// sistema não conseguiu alocar a memória
@@ -51,7 +51,7 @@ bool empilhar(Pilha *p, int dado)
 }
 
 //pop
-bool desempilhar(Pilha *p, int *dado)
+bool desempilhar(Pilha *p, char *dado)
 {
     // se não estiver vazia, retira valor
     if (!vazia(p))
@@ -67,7 +67,7 @@ bool desempilhar(Pilha *p, int *dado)
 }
 
 //peek
-bool espiar(Pilha* p, int *dado)
+bool espiar(Pilha* p, char *dado)
 {
     if (p->topo)
     {
@@ -105,7 +105,7 @@ void mostrar(Pilha *p)
 
 /// retorna true se o valor existe na pilha
 /// retorna false se o valor não existe na pilha
-bool buscar(Pilha *p, int dado)
+bool buscar(Pilha *p, char dado)
 {
 
     No *no = p->topo;
@@ -123,7 +123,7 @@ bool buscar(Pilha *p, int dado)
 
 void desalocar(Pilha *p)
 {
-    int dado;
+    char dado;
     while(!vazia(p))
         desempilhar(p, &dado);
 }
