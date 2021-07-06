@@ -2,7 +2,7 @@
 using namespace std;
 
 #include "pilha.hpp"
-#include "caixa.hpp"
+
 main(){
     setlocale(LC_ALL, "Portuguese");
 
