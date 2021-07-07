@@ -1,11 +1,13 @@
 #ifndef _HPP_PILHA_DINAMICA
 #define _HPP_PILHA_DINAMICA
 
-#include <iomanip> //biblioteca usada para formatar a impressão da pilha
+#include "caixa.hpp"
+
+#include <bits/stdc++.h> //biblioteca usada para formatar a impressão da pilha
 
 struct No
 {
-    int dado; //informacao do nó
+    Caixa dado; //informacao do nó
     No *prox; //proximo elemento da pilha
 };
 
@@ -38,7 +40,7 @@ bool vazia(Pilha *p)
 
 
 //push
-bool empilhar(Pilha *p, int dado)
+bool empilhar(Pilha *p, Caixa dado)
 {
     No *novo =  new No(); //cria um novo nó
     if (!novo) /// sistema não conseguiu alocar a memória
@@ -51,7 +53,7 @@ bool empilhar(Pilha *p, int dado)
 }
 
 //pop
-bool desempilhar(Pilha *p, int *dado)
+bool desempilhar(Pilha *p, Caixa *dado)
 {
     // se não estiver vazia, retira valor
     if (!vazia(p))
@@ -67,7 +69,7 @@ bool desempilhar(Pilha *p, int *dado)
 }
 
 //peek
-bool espiar(Pilha* p, int *dado)
+bool espiar(Pilha* p, Caixa *dado)
 {
     if (p->topo)
     {
@@ -95,7 +97,7 @@ void mostrar(Pilha *p)
         {
             cout << setfill(' ') << std::setw(13) << no << " | ";
             cout << setfill(' ') << std::setw(13) << no->prox << " | ";
-            cout << setfill(' ') << std::setw(10) << no->dado << " |" << endl;
+            cout << setfill(' ') << std::setw(10) << no->dado.codigo << " |" << endl;
 
             no = no->prox;
         }
@@ -105,13 +107,13 @@ void mostrar(Pilha *p)
 
 /// retorna true se o valor existe na pilha
 /// retorna false se o valor não existe na pilha
-bool buscar(Pilha *p, int dado)
+bool buscar(Pilha *p, Caixa dado)
 {
 
     No *no = p->topo;
     while (no != NULL)
     {
-        if(no->dado == dado)
+        if(no->dado.codigo == dado.codigo)
             return true;
 
         no = no->prox;
@@ -123,7 +125,7 @@ bool buscar(Pilha *p, int dado)
 
 void desalocar(Pilha *p)
 {
-    int dado;
+    Caixa dado;
     while(!vazia(p))
         desempilhar(p, &dado);
 }
