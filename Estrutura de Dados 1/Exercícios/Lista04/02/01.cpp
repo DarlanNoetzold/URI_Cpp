@@ -8,7 +8,7 @@ main(){
     setlocale(LC_ALL, "Portuguese");
 
     Fila f;
-    int tamFila;
+    int tamFila=10;
     inicializaF(&f, tamFila);
     Aviao v;
 
@@ -22,8 +22,8 @@ main(){
         cout << "# 1 - Entrada de um novo aviao                  #" << endl;
         cout << "# 2 - Decolagem de um aviao                     #" << endl;
         cout << "# 3 - Listar todos os avioes a espera           #" << endl;
-        cout << "# 5 - Listar caracteristicas do proximo aviao   #" << endl;
-        cout << "# 6 - Nº de avioes a espera de decolar          #" << endl;
+        cout << "# 4 - Listar caracteristicas do proximo aviao   #" << endl;
+        cout << "# 5 - Nº de avioes a espera de decolar          #" << endl;
         cout << "#################################################" << endl;
         cout << "Sua escolha: ";
         cin >> menu;
@@ -74,15 +74,16 @@ main(){
                 if(espiarF(&f, &v)){
                     cout<<"Seguem as informacoes do proximo avia a decolar: "<<endl;
                     cout<<"Codigo: \t"<<v.codigo<<endl;
-                    cout<<"Numero de passageiros: \t"<<v.numPas<<endl;
+                    cout<<"Passageiros: \t"<<v.numPas<<endl;
                     cout<<"Empresa: \t"<<v.empresa<<endl;
+                }else{
+                    cout<<"Nao foi possivel olahr as informacoes, ou a pilha esta vazia ou nao foi inicializada!"<<endl;
                 }
-
                 getchar();
                 break;
             case 5 :
                 system("cls");
-               
+                cout<<"A quantidade de avioes a espera para decolar eh de: "<<indice;
                 getchar();
                 break;
         };
