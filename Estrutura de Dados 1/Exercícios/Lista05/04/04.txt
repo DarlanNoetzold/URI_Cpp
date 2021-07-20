@@ -1,0 +1,3 @@
+Basicamente um é o inverso da outra dentro dos seus objetivos. 
+Já que na pilha os primeiros dados inseridos serão os últimos a ser removidos e na fila os primeiros dados inserido vão ser os primeiros a serão os últimos a ser removidos.
+Além disso a estrura de criação da fila é um pouco mais complexa por usar mais ponteiros.

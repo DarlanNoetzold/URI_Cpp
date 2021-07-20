@@ -12,7 +12,7 @@ struct Fila
     int total; //total de elementos armazenados na fila
     int inicio; //ponteiro para o elemento armazenado no inicio da fila
     int fim; //ponteiro para o fim da fila (posi��o do vetor onde ser� armazenado o pr�ximo elemento)
-    char *dados;//ponteiro para o vetor que ser� alocado para armazenar os dados
+    int *dados;//ponteiro para o vetor que ser� alocado para armazenar os dados
 
     Fila() //Construtor. Usado para inicializar os dados das vari�veis da struct
     {
@@ -32,7 +32,7 @@ void inicializaF(Fila *f, int tam) /// inicializa��o da fila
     f->inicio = 0;
     f->fim = 0;
     f->total = 0;
-    f->dados = new char[tam];/// aloca mem�ria para vetor
+    f->dados = new int[tam];/// aloca mem�ria para vetor
 }
 
 void destroiF(Fila *f)
@@ -67,7 +67,7 @@ bool cheiaF(Fila *f)// fila cheia
 }
 
 //Enqueue
-bool enfileiraF(Fila *f, char valor) /// incluir valor na fila
+bool enfileiraF(Fila *f, int valor) /// incluir valor na fila
 {
     if (!f->dados || cheiaF(f)) // retorna false se a fila n�o foi inicializada ou se cheia
         return false;
@@ -88,7 +88,7 @@ bool enfileiraF(Fila *f, char valor) /// incluir valor na fila
 }
 
 //Dequeue
-bool desenfileiraF(Fila *f, char *valor)  //retirar da fila
+bool desenfileiraF(Fila *f, int *valor)  //retirar da fila
 {
     if (!f->dados || vaziaF(f)) // retorna false se a fila n�o foi inicializada ou se vazia
         return false;
@@ -109,7 +109,7 @@ bool desenfileiraF(Fila *f, char *valor)  //retirar da fila
 }
 
 //Peek
-bool espiarF(Fila *f, char *valor) ///peek
+bool espiarF(Fila *f, int *valor) ///peek
 {
     if (!f->dados || vaziaF(f))  // retorna false se a fila n�o foi inicializada ou se vazia
         return false;
