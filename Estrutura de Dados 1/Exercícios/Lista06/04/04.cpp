@@ -2,6 +2,8 @@
 using namespace std;
 
 #include "fila-dinamica.hpp"
+#include "pilha-dinamica.hpp"
+
 
 void popularFila(Fila *f1){
     int  valor;
@@ -45,26 +47,53 @@ void popularFila(Fila *f1){
                 mostraF(*(&f1));
                 getchar();
                 break;
+            case 4 :
+                system("cls");
+                
+                break;
         };
 
     }while(menu != 0);
 }
 
-Fila concatenaF(Fila f1, Fila f2){
-    Fila conc;
-    inicializaF(&conc);
-    int valor=0;
-    while(!vaziaF(&f1)){
-        if(desenfileiraF(&f1, &valor)){
-            enfileiraF(&conc, valor);
+void separaF(int n, Fila *f1, Fila *f2){
+    Pilha p1;
+    inicializa(&p1);
+    int valor;
+    while(!vaziaF(*(&f1))){
+        if(desenfileiraF(*(&f1), &valor)){
+            empilhar(&p1, valor);
         }
     }
-    while(!vaziaF(&f2)){
-        if(desenfileiraF(&f2, &valor)){
-            enfileiraF(&conc, valor);
+    while(!vazia(&p1)){
+        if(desempilhar(&p1, &valor)){
+            enfileiraF(*(&f1), valor);
         }
     }
-    return conc;
+    cout<<"Valores invertidos!";
+
+    while(!vaziaF(*(&f1))){
+        if(desenfileiraF(*(&f1), &valor)){
+            if(valor == n){
+                enfileiraF(*(&f2), valor);
+                break;
+            }else{
+                enfileiraF(*(&f2), valor);
+            }
+        } 
+    }
+    while(!vaziaF(*(&f1))){
+        if(desenfileiraF(*(&f1), &valor)){
+            empilhar(&p1, valor);
+        }
+    }
+    while(!vazia(&p1)){
+        if(desempilhar(&p1, &valor)){
+            enfileiraF(*(&f1), valor);
+        }
+    }
+    cout<<"Valores invertidos!";
+
 }
 
 
@@ -76,21 +105,17 @@ main(){
     Fila f2;
     inicializaF(&f1);
     inicializaF(&f2);
-    int op=0;
-    do{
-        cout<<"Qual fila vc deseja popular? (1/2) ou 3 para sair: ";
-        cin>>op;
-        if(op == 1){
-            popularFila(&f1);
-        }else if(op == 2){
-            popularFila(&f2);
-        }
-    }while(op != 3);
-    
+    popularFila(&f1);
 
-    Fila conc = concatenaF(f1, f2);
+    int n;
+    cout<<"Digte o ponto de separação: ";
+    cin>>n;
+    separaF(n, &f1, &f2);
 
-    cout<<"Filas concatenadas: "<<endl;
+    cout<<"Filas separada: "<<endl;
+    cout<<"F1: ";
+    mostraF(&f1);
+    cout<<"F2: ";
+    mostraF(&f2);
 
-    mostraF(&conc);
 }
