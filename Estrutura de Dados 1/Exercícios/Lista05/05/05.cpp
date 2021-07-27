@@ -77,7 +77,6 @@ main(){
                         for(int i =1; i <= valor; i++){
                             if(valor % i == 0 && i != 1 && i != 0 && i != valor){
                                 aux++;
-                                cout<<"teste: "<<endl;
                             }
                         }
 

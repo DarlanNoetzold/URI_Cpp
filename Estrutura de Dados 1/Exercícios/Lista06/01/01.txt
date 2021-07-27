@@ -1,0 +1,1 @@
+Na fila circula é usado apenas uma struct, não existe nada que controle o tamanho da fila dinamicamente. Já na fila dinâmica é usado uma struct que controla o Nó da fila apontando sempre para o próximo espaço.
