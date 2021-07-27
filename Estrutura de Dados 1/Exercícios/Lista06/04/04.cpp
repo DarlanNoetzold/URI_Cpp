@@ -70,18 +70,19 @@ void separaF(int n, Fila *f1, Fila *f2){
             enfileiraF(*(&f1), valor);
         }
     }
-    cout<<"Valores invertidos!";
+    cout<<"Valores invertidos!"<<endl;
 
     while(!vaziaF(*(&f1))){
+        espiaF(*(&f1), &valor);
+        if(valor == n){
+            break;
+        }
         if(desenfileiraF(*(&f1), &valor)){
-            if(valor == n){
-                enfileiraF(*(&f2), valor);
-                break;
-            }else{
-                enfileiraF(*(&f2), valor);
-            }
+            enfileiraF(*(&f2), valor);
         } 
     }
+    cout<<"Valores Separados!"<<endl;
+
     while(!vaziaF(*(&f1))){
         if(desenfileiraF(*(&f1), &valor)){
             empilhar(&p1, valor);
@@ -92,7 +93,19 @@ void separaF(int n, Fila *f1, Fila *f2){
             enfileiraF(*(&f1), valor);
         }
     }
-    cout<<"Valores invertidos!";
+    cout<<"Valores invertidos! F1"<<endl;
+
+    while(!vaziaF(*(&f2))){
+        if(desenfileiraF(*(&f2), &valor)){
+            empilhar(&p1, valor);
+        }
+    }
+    while(!vazia(&p1)){
+        if(desempilhar(&p1, &valor)){
+            enfileiraF(*(&f2), valor);
+        }
+    }
+    cout<<"Valores invertidos! F2"<<endl;
 
 }
 
