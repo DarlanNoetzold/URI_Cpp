@@ -2,17 +2,17 @@
 #ifndef _HPP_FILA
 #define _HPP_FILA
 
-#include <iomanip> //biblioteca usada para formatar a impressão da fila
+#include <iomanip> //biblioteca usada para formatar a impressï¿½o da fila
 
 struct Fila
 {
     int tam; //tamanho do vetor de dados
     int total; //total de elementos armazenados na fila
     int inicio; //ponteiro para o elemento armazenado no inicio da fila
-    int fim; //ponteiro para o fim da fila (posição do vetor onde será armazenado o próximo elemento)
-    int *dados;//ponteiro para o vetor que será alocado para armazenar os dados
+    int fim; //ponteiro para o fim da fila (posiï¿½ï¿½o do vetor onde serï¿½ armazenado o prï¿½ximo elemento)
+    int *dados;//ponteiro para o vetor que serï¿½ alocado para armazenar os dados
 
-    Fila() //Construtor. Usado para inicializar os dados das variáveis da struct
+    Fila() //Construtor. Usado para inicializar os dados das variï¿½veis da struct
     {
         tam =0;
         total = 0;
@@ -24,13 +24,13 @@ struct Fila
 
 
 
-void inicializaF(Fila *f, int tam) /// inicialização da fila
+void inicializaF(Fila *f, int tam) /// inicializaï¿½ï¿½o da fila
 {
     f->tam = tam;
     f->inicio = 0;
     f->fim = 0;
     f->total = 0;
-    f->dados = new int[tam];/// aloca memória para vetor
+    f->dados = new int[tam];/// aloca memï¿½ria para vetor
 }
 
 void destroiF(Fila *f)
@@ -67,7 +67,7 @@ bool cheiaF(Fila *f)// fila cheia
 //Enqueue
 bool enfileiraF(Fila *f, int valor) /// incluir valor na fila
 {
-    if (!f->dados || cheiaF(f)) // retorna false se a fila não foi inicializada ou se cheia
+    if (!f->dados || cheiaF(f)) // retorna false se a fila nï¿½o foi inicializada ou se cheia
         return false;
 
     //inserir no final da fila
@@ -76,7 +76,7 @@ bool enfileiraF(Fila *f, int valor) /// incluir valor na fila
     //incrementa a quantidade de elementos armazenados na fila
     f->total++;
 
-    //avança o ponteiro fim
+    //avanï¿½a o ponteiro fim
     f->fim++;
 
     if(f->fim>=f->tam)
@@ -88,7 +88,7 @@ bool enfileiraF(Fila *f, int valor) /// incluir valor na fila
 //Dequeue
 bool desenfileiraF(Fila *f, int *valor)  //retirar da fila
 {
-    if (!f->dados || vaziaF(f)) // retorna false se a fila não foi inicializada ou se vazia
+    if (!f->dados || vaziaF(f)) // retorna false se a fila nï¿½o foi inicializada ou se vazia
         return false;
 
     //remover do inicio da fila
@@ -97,7 +97,7 @@ bool desenfileiraF(Fila *f, int *valor)  //retirar da fila
     //diminui a quantidade de elementos armazenados na fila
     f->total--;
 
-    //avança o ponteiro início
+    //avanï¿½a o ponteiro inï¿½cio
     f->inicio++;
 
     if(f->inicio>=f->tam)
@@ -109,7 +109,7 @@ bool desenfileiraF(Fila *f, int *valor)  //retirar da fila
 //Peek
 bool espiarF(Fila *f, int *valor) ///peek
 {
-    if (!f->dados || vaziaF(f))  // retorna false se a fila não foi inicializada ou se vazia
+    if (!f->dados || vaziaF(f))  // retorna false se a fila nï¿½o foi inicializada ou se vazia
         return false;
 
     *valor = f->dados[f->inicio];
@@ -122,7 +122,7 @@ void mostraF(Fila *f)
     cout << "\nFila{TAM = " << f->tam << ", TOTAL = " <<  f->total << "} -> ";
 
 
-    if (!f->dados)  // retorna se a fila não foi inicializada
+    if (!f->dados)  // retorna se a fila nï¿½o foi inicializada
         return;
 
     if (!vaziaF(f))
@@ -154,21 +154,21 @@ void mostraVetorDadosF(Fila *f)
     cout << ", I = " << f->inicio << ", F = " <<  f->fim << "} -> ";
 
 
-    if (!f->dados)  // retorna se a fila não foi inicializada
+    if (!f->dados)  // retorna se a fila nï¿½o foi inicializada
         return;
 
     //A quantidade de dados armazenados na fila pode ser menor que o tamanho do vetor de dados "f->dados"
-    //Assim, o vetor de dados "f->dados" pode conter posições livres quando a fila não está cheia.
-    //O vetor "dadosFila[f->tam]" foi usado para determinar se uma posição i do vetor f->dados está livre ou não
+    //Assim, o vetor de dados "f->dados" pode conter posiï¿½ï¿½es livres quando a fila nï¿½o estï¿½ cheia.
+    //O vetor "dadosFila[f->tam]" foi usado para determinar se uma posiï¿½ï¿½o i do vetor f->dados estï¿½ livre ou nï¿½o
     bool dadosFila[f->tam];
 
-    //inicializa o vetor, indicando que que todos as posições do vetor estão livres, ou seja, fila vazia
+    //inicializa o vetor, indicando que que todos as posiï¿½ï¿½es do vetor estï¿½o livres, ou seja, fila vazia
     for(int i = 0; i < f->tam; i++)
         dadosFila[i] = false;
 
-    //Atribui TRUE para cada posição do vetor de dados que armazena um valor da fila
+    //Atribui TRUE para cada posiï¿½ï¿½o do vetor de dados que armazena um valor da fila
     int idx = f->inicio;
-    for(int i = 0; i < f->total; i++) // FOR percorrendo f->inicio até f->fim
+    for(int i = 0; i < f->total; i++) // FOR percorrendo f->inicio atï¿½ f->fim
     {
         dadosFila[idx] = true;
         idx++;
@@ -176,11 +176,11 @@ void mostraVetorDadosF(Fila *f)
             idx=0; //circular
     }
 
-    //imprimir o vetor, colocando "-" para posições livres
+    //imprimir o vetor, colocando "-" para posiï¿½ï¿½es livres
     cout << "[";
     for(int i = 0; i < f->tam; i++)
     {
-        //para cada posição não nula do vetor de dados, imprimir o valor do dado
+        //para cada posiï¿½ï¿½o nï¿½o nula do vetor de dados, imprimir o valor do dado
         if(dadosFila[i])
             cout << f->dados[i];
         else
