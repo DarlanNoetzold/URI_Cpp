@@ -23,7 +23,7 @@ struct FichaDoacao{
     Objeto objeto;
 };
 
-struct Emprese{
+struct Empresa{
     string nome;
     string CNPJ;
     string tipo;

@@ -1,42 +1,42 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#ifndef _HPP_FILA_DINAMICA
-#define _HPP_FILA_DINAMICA
+#ifndef _HPP_FilaPessoa_DINAMICA
+#define _HPP_FilaPessoa_DINAMICA
 
 #include "Estruturas.hpp"
 
-typedef Pessoa DadoNoFila;
+typedef Pessoa DadoNoFilaPessoa;
 
-struct NoFila
+struct NoFilaPessoa
 {
-    DadoNoFila dado; //informacao do n�
-    NoFila *prox; //proximo elemento da fila
+    DadoNoFilaPessoa dado; //informacao do n�
+    NoFilaPessoa *prox; //proximo elemento da FilaPessoa
 };
 
-struct Fila
+struct FilaPessoa
 {
-    NoFila *inicio;
-    NoFila *fim;
+    NoFilaPessoa *inicio;
+    NoFilaPessoa *fim;
 
-    Fila(){ //Construtor. Usado para inicializar os dados das vari�veis da struct
+    FilaPessoa(){ //Construtor. Usado para inicializar os dados das vari�veis da struct
         inicio = nullptr;
         fim = nullptr;
     }
 };
 
 
-///inicializa��o dos dados da fila
-void inicializaF(Fila *f)
+///inicializa��o dos dados da FilaPessoa
+void inicializaFilaPessoa(FilaPessoa *f)
 {
-    //define nulo para o in�nio e o fim da fila
+    //define nulo para o in�nio e o fim da FilaPessoa
     f->inicio = nullptr;
     f->fim = nullptr;
 }
 
-bool vaziaF(Fila *f)
+bool vaziaFilaPessoa(FilaPessoa *f)
 {
-    if (!f->inicio) //verifica se a fila est� vazia, ou seja, (f->inicio == NULL)
+    if (!f->inicio) //verifica se a FilaPessoa est� vazia, ou seja, (f->inicio == NULL)
         return true;
     else
         return false;
@@ -44,15 +44,15 @@ bool vaziaF(Fila *f)
 
 
 //Enqueue
-bool enfileiraF(Fila *f, DadoNoFila dado)
+bool enfileiraFilaPessoa(FilaPessoa *f, DadoNoFilaPessoa dado)
 {
-    NoFila *novo = new NoFila();
+    NoFilaPessoa *novo = new NoFilaPessoa();
     if (!novo) /// n�o conseguiu alocar mem�ria (novo == NULL)
         return false;
 
     novo->dado = dado;
     novo->prox = nullptr;
-    if (!f->inicio) //verifica se a fila est� vazia, ou seja, (f->inicio == NULL)
+    if (!f->inicio) //verifica se a FilaPessoa est� vazia, ou seja, (f->inicio == NULL)
         f->inicio = novo;
     else
         f->fim->prox = novo;
@@ -62,17 +62,17 @@ bool enfileiraF(Fila *f, DadoNoFila dado)
 }
 
 //Dequeue
-bool desenfileiraF(Fila *f, DadoNoFila *dado)
+bool desenfileiraFilaPessoa(FilaPessoa *f, DadoNoFilaPessoa *dado)
 {
     // se n�o estiver vazia, retira valor
-    if (f->inicio) //verifica se a fila n�o est� vazia, ou seja, (f->inicio != NULL)
+    if (f->inicio) //verifica se a FilaPessoa n�o est� vazia, ou seja, (f->inicio != NULL)
     {
         *dado = f->inicio->dado; //pega o dado armazenado no primeiro n�
-        NoFila *apagar = f->inicio; //guarda o primeiro n� em uma vari�vel auxiliar;
-        f->inicio = f->inicio->prox; // atualiza o in�cio da fila
+        NoFilaPessoa *apagar = f->inicio; //guarda o primeiro n� em uma vari�vel auxiliar;
+        f->inicio = f->inicio->prox; // atualiza o in�cio da FilaPessoa
         delete apagar;  // libera a mem�ria
 
-        if (!f->inicio) //verifica se a fila est� vazia, ou seja, (f->inicio == NULL)
+        if (!f->inicio) //verifica se a FilaPessoa est� vazia, ou seja, (f->inicio == NULL)
             f->fim = nullptr;
 
         return true;
@@ -82,9 +82,9 @@ bool desenfileiraF(Fila *f, DadoNoFila *dado)
 }
 
 //peek
-bool espiaF(Fila* f, DadoNoFila *dado)
+bool espiaFilaPessoa(FilaPessoa* f, DadoNoFilaPessoa *dado)
 {
-    if (f->inicio) //verifica se a fila n�o est� vazia, ou seja, (f->inicio != NULL)
+    if (f->inicio) //verifica se a FilaPessoa n�o est� vazia, ou seja, (f->inicio != NULL)
     {
         *dado= f->inicio->dado;
         return true;
@@ -94,16 +94,16 @@ bool espiaF(Fila* f, DadoNoFila *dado)
 }
 
 //show
-void mostraF(Fila *f)
+void mostraFilaPessoa(FilaPessoa *f)
 {
-    cout << "Fila: ";
+    cout << "FilaPessoa: ";
 
-    if(f->inicio) //verifica se a fila n�o est� vazia, ou seja, (f->inicio != NULL)
+    if(f->inicio) //verifica se a FilaPessoa n�o est� vazia, ou seja, (f->inicio != NULL)
     {
 
         cout << "[";
 
-        NoFila *no = f->inicio;
+        NoFilaPessoa *no = f->inicio;
         while (no) //fa�a enquanto (no != NULL)
         {
             cout << no->dado.nomeCompleto;
@@ -118,12 +118,12 @@ void mostraF(Fila *f)
         cout << "vazia!\n";
 }
 
-// retorna true se o valor existe na fila
-// retorna false se o valor n�o existe na fila
-bool buscaF(Fila *f, DadoNoFila dado)
+// retorna true se o valor existe na FilaPessoa
+// retorna false se o valor n�o existe na FilaPessoa
+bool buscaFilaPessoa(FilaPessoa *f, DadoNoFilaPessoa dado)
 {
 
-    NoFila *no = f->inicio;
+    NoFilaPessoa *no = f->inicio;
     while (no) //fa�a enquanto (no != NULL)
     {
         if(no->dado.nomeCompleto == dado.nomeCompleto)
@@ -135,13 +135,13 @@ bool buscaF(Fila *f, DadoNoFila dado)
     return false;
 }
 
-void destroiF(Fila *f)
+void destroiFilaPessoa(FilaPessoa *f)
 {
 
-    NoFila *no = f->inicio;
+    NoFilaPessoa *no = f->inicio;
     while (no) //fa�a enquanto (no != NULL)
     {
-        NoFila *apagar = no; //guarda o n� em uma vari�vel auxiliar;
+        NoFilaPessoa *apagar = no; //guarda o n� em uma vari�vel auxiliar;
 
         no = no->prox;
 
@@ -152,7 +152,7 @@ void destroiF(Fila *f)
     f->fim = nullptr;
 }
 
-#endif // _HPP_FILA_DINAMICA
+#endif // _HPP_FilaPessoa_DINAMICA
 
 
 
