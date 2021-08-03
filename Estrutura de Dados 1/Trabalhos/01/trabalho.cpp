@@ -90,9 +90,9 @@ void incluirEmpresa(FilaEmpresa *filaEmpresa, FilaEmpresa *filaEmpresaPrioritari
     cin>>p1.nome;
     fflush(stdin);
     do{
-        cout<<"Digite o tipo (livros, equipamentos)"<<endl;
+        cout<<"Digite o tipo (livro, equipamento)"<<endl;
         cin>>auxS;
-        if(auxS == "livros" || auxS == "equipamentos"){
+        if(auxS == "livro" || auxS == "equipamento"){
             p1.tipo = auxS;
             valido = true;
         }else{
@@ -112,7 +112,7 @@ void incluirEmpresa(FilaEmpresa *filaEmpresa, FilaEmpresa *filaEmpresaPrioritari
         }
     }while(!valido);
 
-    if(p1.tipo == "livros"){
+    if(p1.tipo == "livro"){
         enfileiraFilaEmpresa(*(&filaEmpresaPrioritarias), p1);
     }else{
         enfileiraFilaEmpresa(*(&filaEmpresa), p1);
@@ -150,7 +150,10 @@ void atendePessoa(FilaPessoa *filaPessoa, PilhaFichaDoacao *pilhaFichaDoacao, Pi
         }else if(objeto.tipo == "equipamento"){
             empilhaObjeto(*(&pilhaEquipamentos), objeto);
         }
-    }else{
+        ofstream escreve("doacao.txt",ios::app);
+        escreve << fichaDoacao.pessoa.nomeCompleto <<" # "<< fichaDoacao.pessoa.sexo <<" # "<< fichaDoacao.pessoa.CPF <<" # "<< fichaDoacao.pessoa.idade <<" # DEF_"<< fichaDoacao.pessoa.defFisico <<" # GEST_"<< fichaDoacao.pessoa.gestante <<" # OBJ_"<< objeto.tipo <<" # "<<objeto.descricao<<"\n";
+        escreve.close();
+    }else if(!vaziaFilaPessoa(filaPessoa)){
         desenfileiraFilaPessoa(*(&filaPessoa), &valor);
         fichaDoacao.pessoa = valor;
         do{
@@ -175,11 +178,14 @@ void atendePessoa(FilaPessoa *filaPessoa, PilhaFichaDoacao *pilhaFichaDoacao, Pi
         }else if(objeto.tipo == "equipamento"){
             empilhaObjeto(*(&pilhaEquipamentos), objeto);
         }
+        ofstream escreve("doacao.txt",ios::app);
+        escreve << fichaDoacao.pessoa.nomeCompleto <<" # "<< fichaDoacao.pessoa.sexo <<" # "<< fichaDoacao.pessoa.CPF <<" # "<< fichaDoacao.pessoa.idade <<" # DEF_"<< fichaDoacao.pessoa.defFisico <<" # GEST_"<< fichaDoacao.pessoa.gestante <<" # OBJ_"<< objeto.tipo <<" # "<<objeto.descricao<<"\n";
+        escreve.close();
+    }else{
+        cout<<"Nao tem mais pessoas!"<<endl;
+        getchar();
     }
-    
-    ofstream escreve("doacao.txt",ios::app);
-    escreve << fichaDoacao.pessoa.nomeCompleto <<" # "<< fichaDoacao.pessoa.sexo <<" # "<< fichaDoacao.pessoa.CPF <<" # "<< fichaDoacao.pessoa.idade <<" # DEF_"<< fichaDoacao.pessoa.defFisico <<" # GEST_"<< fichaDoacao.pessoa.gestante <<" # OBJ_"<< objeto.tipo <<" # "<<objeto.descricao<<"\n";
-    escreve.close();
+ 
 }
 
 
@@ -191,15 +197,34 @@ void atendeEmpresa(FilaEmpresa *filaEmpresa, FilaEmpresa *filaEmpresaPrioritaria
 
     if(!vaziaFilaEmpresa(filaEmpresaPrioritarias)){
         desenfileiraFilaEmpresa(*(&filaEmpresaPrioritarias), &empresa);
-        cout<<"Quantos objeto serão retirado: "<<endl;
+        cout<<"Quantos objeto serao retirado: "<<endl;
         cin>>quant;
 
-        cout<<"Qual o tipo de retirada: (você está em priridade então deve ser livro)"<<endl;
+        cout<<"Qual o tipo de retirada: (voce esta em priridade entao deve ser livro)"<<endl;
         cin>>verifica;
 
         if(verifica == empresa.tipo){
             for(int i = 0; i < quant; i++){
                 desempilhaObjeto(*(&pilhaLivros), &objeto);
+                ofstream escreve("retirada.txt",ios::app);
+                escreve << empresa.nome <<" # "<< empresa.CNPJ <<" # TRANS_"<< empresa.tipo <<" # OBJ_"<< objeto.tipo <<" # "<<objeto.descricao<<"\n";
+                escreve.close();
+            }
+        }else{
+            cout<<"Tipo errado!"<<endl;
+            getchar();
+        }
+    }else if(!vaziaFilaEmpresa(filaEmpresa)){
+        desenfileiraFilaEmpresa(*(&filaEmpresa), &empresa);
+        cout<<"Quantos objeto serao retirado: "<<endl;
+        cin>>quant;
+
+        cout<<"Qual o tipo de retirada: (voce nao esta em prioridade entao deve ser equipamento)"<<endl;
+        cin>>verifica;
+
+        if(verifica == empresa.tipo){
+            for(int i = 0; i < quant; i++){
+                desempilhaObjeto(*(&pilhaEquipamentos), &objeto);
                 ofstream escreve("retirada.txt",ios::app);
                 escreve << empresa.nome <<" # "<< empresa.CNPJ <<" # TRANS_"<< empresa.tipo <<" # OBJ_"<< objeto.tipo <<" # "<<objeto.descricao<<"\n";
                 escreve.close();
@@ -209,24 +234,8 @@ void atendeEmpresa(FilaEmpresa *filaEmpresa, FilaEmpresa *filaEmpresaPrioritaria
             getchar();
         }
     }else{
-        desenfileiraFilaEmpresa(*(&filaEmpresa), &empresa);
-        cout<<"Quantos objeto serão retirado: "<<endl;
-        cin>>quant;
-
-        cout<<"Qual o tipo de retirada: (você  nao esta em prioridade então deve ser equipamento)"<<endl;
-        cin>>verifica;
-
-        if(verifica == empresa.tipo){
-            for(int i = 0; i < quant; i++){
-                desempilhaObjeto(*(&pilhaLivros), &objeto);
-                ofstream escreve("retirada.txt",ios::app);
-                escreve << empresa.nome <<" # "<< empresa.CNPJ <<" # TRANS_"<< empresa.tipo <<" # OBJ_"<< objeto.tipo <<" # "<<objeto.descricao<<"\n";
-                escreve.close();
-            }
-        }else{
-            cout<<"Tipo errado!"<<endl;
-            getchar();
-        }
+        cout<<"Acabaram as empresas!"<<endl;
+        getchar();
     }
 }
 
@@ -301,10 +310,28 @@ main(){
                 break;
             case 5 :
                 system("cls");
-
+                cout<<"Pessoas prioritarias: "<<endl;
+                mostraFilaPessoa(&filaPessoaPrioritarias);
+                cout<<endl;
+                cout<<"Pessoas nao prioritarias: "<<endl;
+                mostraFilaPessoa(&filaPessoa);
                 getchar();
                 break;
             case 6 :
+                system("cls");
+                cout<<"Empresas prioritarias: "<<endl;
+                mostraFilaEmpresa(&filaEmpresaPrioritarias);
+                cout<<endl;
+                cout<<"Empresas nao prioritarias: "<<endl;
+                mostraFilaEmpresa(&filaEmpresa);
+                getchar();
+                break;
+            case 7 :
+                system("cls");
+
+                getchar();
+                break;
+            case 8 :
                 system("cls");
 
                 getchar();
