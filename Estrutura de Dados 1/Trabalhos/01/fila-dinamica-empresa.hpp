@@ -106,7 +106,7 @@ void mostraFilaEmpresa(FilaEmpresa *f)
         NoFilaEmpresa *no = f->inicio;
         while (no) //fa�a enquanto (no != NULL)
         {
-            cout << no->dado.nomeCompleto;
+            cout << no->dado.nome;
             no = no->prox;
 
             if(no) //verifica se o pr�ximo n� n�o � nulo (no != NULL)
@@ -126,7 +126,7 @@ bool buscaFilaEmpresa(FilaEmpresa *f, DadoNoFilaEmpresa dado)
     NoFilaEmpresa *no = f->inicio;
     while (no) //fa�a enquanto (no != NULL)
     {
-        if(no->dado.nomeCompleto == dado.nomeCompleto)
+        if(no->dado.nome == dado.nome)
             return true;
 
         no = no->prox;

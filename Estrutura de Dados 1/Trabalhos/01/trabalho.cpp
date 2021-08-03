@@ -109,8 +109,40 @@ void incluirEmpresa(FilaEmpresa *filaEmpresa){
     enfileiraFilaEmpresa(*(&filaEmpresa), p1);
 }
 
-void atendePessoa(){
+void atendePessoa(FilaPessoa *filaPessoa, PilhaFichaDoacao *pilhaFichaDoacao, PilhaObjeto *pilhaLivros, PilhaObjeto *pilhaEquipamentos){
+    bool valido = false;
+    Pessoa valor;
+    desenfileiraFilaPessoa(*(&filaPessoa), &valor);
+    FichaDoacao fichaDoacao;
+    fichaDoacao.pessoa = valor;
+    Objeto objeto;
+    string auxS;
+    do{
+        cout<<"Digite o tipo (livro, equipamento)"<<endl;
+        cin>>auxS;
+        if(auxS == "livro" || auxS == "equipamento"){
+            objeto.tipo = auxS;
+            valido = true;
+        }else{
+            cout<<"Valor invalido!"<<endl;
+            valido = false;
+        }
+    }while(!valido);
 
+    cout<<"Digite a descricao: "<<endl;
+    cin>>objeto.descricao;
+
+    fichaDoacao.objeto = objeto;
+    empilhaFichaDoacao(*(&pilhaFichaDoacao), fichaDoacao);
+    if(objeto.tipo == "livro"){
+        empilhaObjeto(*(&pilhaLivros), objeto);
+    }else if(objeto.tipo == "equipamento"){
+        empilhaObjeto(*(&pilhaEquipamentos), objeto);
+    }
+    
+    ofstream escreve("doacao.txt",ios::app);
+    escreve << fichaDoacao.pessoa.nomeCompleto <<" # "<< fichaDoacao.pessoa.sexo <<" # "<< fichaDoacao.pessoa.CPF <<" # "<< fichaDoacao.pessoa.idade <<" # DEF_"<< fichaDoacao.pessoa.defFisico <<" # GEST_"<< fichaDoacao.pessoa.gestante <<" # OBJ_"<< objeto.tipo <<" # "<<objeto.descricao<<"\n";
+    escreve.close();
 }
 
 
@@ -124,6 +156,11 @@ main(){
 
     cout<<"Inicializando pilhas:"<<endl;
     PilhaFichaDoacao pilhaFichaDoacao;
+    inicializaFichaDoacao(&pilhaFichaDoacao);
+    PilhaObjeto pilhaLivros;
+    inicializaObjeto(&pilhaLivros);
+    PilhaObjeto pilhaEquipamentos;
+    inicializaObjeto(&pilhaEquipamentos);
 
     int valor;
     int menu = -1, indice = 0;
@@ -160,7 +197,7 @@ main(){
             case 3 :
                 system("cls");
                 cout<<"Atendendo pessoa..."<<endl;
-                atendePessoa(&filaPessoa);
+                atendePessoa(&filaPessoa, &pilhaFichaDoacao, &pilhaLivros, &pilhaEquipamentos);
                 getchar();
                 break;
             case 4 :

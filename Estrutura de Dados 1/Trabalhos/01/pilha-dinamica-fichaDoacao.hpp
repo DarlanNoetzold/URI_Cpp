@@ -7,15 +7,15 @@ using namespace std;
 
 #include "Estruturas.hpp"
 
-struct No
+struct NoFichaObjeto
 {
     FichaDoacao dado; //informacao do n�
-    No *prox; //proximo elemento da PilhaFichaDoacao
+    NoFichaObjeto *prox; //proximo elemento da PilhaFichaDoacao
 };
 
 struct PilhaFichaDoacao
 {
-    No *topo;
+    NoFichaObjeto *topo;
 
     PilhaFichaDoacao(){ //Construtor. Usado para inicializar os dados das vari�veis da struct
         topo = nullptr;
@@ -44,13 +44,13 @@ bool vaziaFichaDoacao(PilhaFichaDoacao *p)
 //push
 bool empilhaFichaDoacao(PilhaFichaDoacao *p, FichaDoacao dado)
 {
-    No *novo =  new No(); //cria um novo n�
-    if (!novo) /// sistema n�o conseguiu alocar a mem�ria
+    NoFichaObjeto *NoFichaObjetovo =  new NoFichaObjeto(); //cria um NoFichaObjetovo n�
+    if (!NoFichaObjetovo) /// sistema n�o conseguiu alocar a mem�ria
         return false;
 
-    novo->dado = dado; //armazena a informa��o no n�
-    novo->prox = p->topo; //o pr�ximo elemento do n� criado ser� o �ltimo elemento da PilhaFichaDoacao
-    p->topo = novo; //atualiza o topo da PilhaFichaDoacao para o n� criado.
+    NoFichaObjetovo->dado = dado; //armazena a informa��o NoFichaObjeto n�
+    NoFichaObjetovo->prox = p->topo; //o pr�ximo elemento do n� criado ser� o �ltimo elemento da PilhaFichaDoacao
+    p->topo = NoFichaObjetovo; //atualiza o topo da PilhaFichaDoacao para o n� criado.
     return true;
 }
 
@@ -60,8 +60,8 @@ bool desempilhaFichaDoacao(PilhaFichaDoacao *p, FichaDoacao *dado)
     // se n�o estiver vazia, retira valor
     if (!vaziaFichaDoacao(p))
     {
-        *dado = p->topo->dado; //pega o dado armazenado no n� do topo
-        No *apagar = p->topo; //guarda o n� do topo em uma vari�vel auxiliar;
+        *dado = p->topo->dado; //pega o dado armazenado NoFichaObjeto n� do topo
+        NoFichaObjeto *apagar = p->topo; //guarda o n� do topo em uma vari�vel auxiliar;
         p->topo = p->topo->prox; //atualiza o topo para o pr�ximo elemento;
         delete apagar;  /// libera a mem�ria
         return true;
@@ -94,14 +94,14 @@ void mostrarFichaDoacao(PilhaFichaDoacao *p)
         cout << setfill(' ') << std::setw(13) << "Prox" << " | ";
         cout << setfill(' ') << std::setw(10) << "Dado" << " |" << endl;
         cout << "--------------------------------------------" << endl;
-        No *no = p->topo;
-        while (no != NULL)
+        NoFichaObjeto *NoFichaObjeto = p->topo;
+        while (NoFichaObjeto != NULL)
         {
-            cout << setfill(' ') << std::setw(13) << no << " | ";
-            cout << setfill(' ') << std::setw(13) << no->prox << " | ";
-            cout << setfill(' ') << std::setw(10) << no->dado.pessoa.nomeCompleto << " |" << endl;
+            cout << setfill(' ') << std::setw(13) << NoFichaObjeto << " | ";
+            cout << setfill(' ') << std::setw(13) << NoFichaObjeto->prox << " | ";
+            cout << setfill(' ') << std::setw(10) << NoFichaObjeto->dado.pessoa.nomeCompleto << " |" << endl;
 
-            no = no->prox;
+            NoFichaObjeto = NoFichaObjeto->prox;
         }
         cout << "--------------------------------------------" << endl;
     }
@@ -112,13 +112,13 @@ void mostrarFichaDoacao(PilhaFichaDoacao *p)
 bool buscarFichaDoacao(PilhaFichaDoacao *p, FichaDoacao dado)
 {
 
-    No *no = p->topo;
-    while (no != NULL)
+    NoFichaObjeto *NoFichaObjeto = p->topo;
+    while (NoFichaObjeto != NULL)
     {
-        if(no->dado.pessoa.nomeCompleto == dado.pessoa.nomeCompleto)
+        if(NoFichaObjeto->dado.pessoa.nomeCompleto == dado.pessoa.nomeCompleto)
             return true;
 
-        no = no->prox;
+        NoFichaObjeto = NoFichaObjeto->prox;
     }
 
     return false;
