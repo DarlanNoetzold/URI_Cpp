@@ -118,6 +118,24 @@ void mostraFilaEmpresa(FilaEmpresa *f)
         cout << "vazia!\n";
 }
 
+void mostraFilaEmpresaUnificada(FilaEmpresa *f1, FilaEmpresa *f2){
+    int totalEmpresas=0, tipoLivro=0, tipoEquipamento=0;
+    NoFilaEmpresa *no = f1->inicio;
+    while (no){
+        totalEmpresas++;
+        if(no->dado.tipo == "livro"){
+            tipoLivro++;
+        }else if(no->dado.tipo == "equipamento"){
+            tipoEquipamento++;
+        }
+    }
+
+    cout << "O total de equipamentos na fila eh: " << totalPessoas << endl;
+    cout << "Existem " << tipoLivro << " empresas de livros." << endl;
+    cout << "Existem " << tipoEquipamento << " empresas de equipamentos." << endl;
+
+}
+
 // retorna true se o valor existe na FilaEmpresa
 // retorna false se o valor n�o existe na FilaEmpresa
 bool buscaFilaEmpresa(FilaEmpresa *f, DadoNoFilaEmpresa dado)

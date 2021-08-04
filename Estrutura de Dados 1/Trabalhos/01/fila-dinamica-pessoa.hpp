@@ -118,6 +118,50 @@ void mostraFilaPessoa(FilaPessoa *f)
         cout << "vazia!\n";
 }
 
+
+void mostraFilaPessoaUnificada(FilaPessoa *f1, FilaPessoa *f2){
+    NoFilaPessoa *no = f1->inicio;
+    int totalPessoas = 0, fem = 0, masc = 0, def = 0, gest = 0;
+    while (no){
+        totalPessoas++;
+        if (no->dado.defFisico){
+            def++;
+        }
+        if (no->dado.gestante){
+            gest++;
+        }
+        if (no->dado.sexo == "feminino"){
+            fem++;
+        }
+        else if (no->dado.sexo == "masculino"){
+            masc++;
+        }
+    }
+
+    NoFilaPessoa *no = f2->inicio;
+    while (no){
+        totalPessoas++;
+        if (no->dado.defFisico){
+            def++;
+        }
+        if (no->dado.gestante){
+            gest++;
+        }
+        if (no->dado.sexo == "feminino"){
+            fem++;
+        }
+        else if (no->dado.sexo == "masculino"){
+            masc++;
+        }
+    }
+
+    cout << "O total de pessoas na fila eh: " << totalPessoas << endl;
+    cout << "Existem " << fem << " mulheres." << endl;
+    cout << "Existem " << masc << " homens." << endl;
+    cout << "Existem " << def << " deficientes." << endl;
+    cout << "Existem " << gest << " gestantes." << endl;
+}
+
 // retorna true se o valor existe na FilaPessoa
 // retorna false se o valor n�o existe na FilaPessoa
 bool buscaFilaPessoa(FilaPessoa *f, DadoNoFilaPessoa dado)

@@ -205,10 +205,16 @@ void atendeEmpresa(FilaEmpresa *filaEmpresa, FilaEmpresa *filaEmpresaPrioritaria
 
         if(verifica == empresa.tipo){
             for(int i = 0; i < quant; i++){
-                desempilhaObjeto(*(&pilhaLivros), &objeto);
+                if(desempilhaObjeto(*(&pilhaLivros), &objeto)){
                 ofstream escreve("retirada.txt",ios::app);
                 escreve << empresa.nome <<" # "<< empresa.CNPJ <<" # TRANS_"<< empresa.tipo <<" # OBJ_"<< objeto.tipo <<" # "<<objeto.descricao<<"\n";
                 escreve.close();
+                cout<<"Livro Retirado"<<endl;
+                getchar();
+                }else{
+                    cout<<"Acabaram os livros a serem retirados"<<endl;
+                    getchar();
+                }
             }
         }else{
             cout<<"Tipo errado!"<<endl;
@@ -224,10 +230,16 @@ void atendeEmpresa(FilaEmpresa *filaEmpresa, FilaEmpresa *filaEmpresaPrioritaria
 
         if(verifica == empresa.tipo){
             for(int i = 0; i < quant; i++){
-                desempilhaObjeto(*(&pilhaEquipamentos), &objeto);
+                if(desempilhaObjeto(*(&pilhaEquipamentos), &objeto)){
                 ofstream escreve("retirada.txt",ios::app);
                 escreve << empresa.nome <<" # "<< empresa.CNPJ <<" # TRANS_"<< empresa.tipo <<" # OBJ_"<< objeto.tipo <<" # "<<objeto.descricao<<"\n";
                 escreve.close();
+                cout<<"Equipamento Retirado"<<endl;
+                getchar();
+                }else{
+                    cout<<"Acabaram os equipamentos a serem retiados"<<endl;
+                    getchar();
+                }
             }
         }else{
             cout<<"Tipo errado!"<<endl;
@@ -261,7 +273,8 @@ main(){
     inicializaObjeto(&pilhaEquipamentos);
 
     int valor;
-    int menu = -1, indice = 0;
+    int indice = 0;
+    char menu;
     do{
         system("cls");
         cout << "#########MENU#########" << endl;
@@ -279,36 +292,36 @@ main(){
         fflush(stdin);//limpa o buffer do teclado
 
         switch(menu){
-            case 0 :
+            case '0' :
                 system("cls");
                 cout << "PROGRAMA FINALIZADO";
                 getchar();
                 break;
-            case 1 :
+            case '1' :
                 system("cls");
                 cout<<"Enfielirando pessoa..."<<endl;
                 incluirPessoa(&filaPessoa, &filaPessoaPrioritarias);
                 getchar();
                 break;
-            case 2 :
+            case '2' :
                 system("cls");
                 cout<<"Enfielirando empresa..."<<endl;
                 incluirEmpresa(&filaEmpresa, &filaEmpresaPrioritarias);
                 getchar();
                 break;
-            case 3 :
+            case '3' :
                 system("cls");
                 cout<<"Atendendo pessoa..."<<endl;
                 atendePessoa(&filaPessoa, &pilhaFichaDoacao, &pilhaLivros, &pilhaEquipamentos, &filaPessoaPrioritarias);
                 getchar();
                 break;
-            case 4 :
+            case '4' :
                 system("cls");
                 cout<<"Atendendo empresa..."<<endl;
                 atendeEmpresa(&filaEmpresa, &filaEmpresaPrioritarias, &pilhaLivros, &pilhaEquipamentos);
                 getchar();
                 break;
-            case 5 :
+            case '5' :
                 system("cls");
                 cout<<"Pessoas prioritarias: "<<endl;
                 mostraFilaPessoa(&filaPessoaPrioritarias);
@@ -317,7 +330,7 @@ main(){
                 mostraFilaPessoa(&filaPessoa);
                 getchar();
                 break;
-            case 6 :
+            case '6' :
                 system("cls");
                 cout<<"Empresas prioritarias: "<<endl;
                 mostraFilaEmpresa(&filaEmpresaPrioritarias);
@@ -326,14 +339,33 @@ main(){
                 mostraFilaEmpresa(&filaEmpresa);
                 getchar();
                 break;
-            case 7 :
+            case '7' :
                 system("cls");
-
+                cout<<"Informacoes de pessoas unificadas: "<<endl;
+                mostraFilaPessoaUnificada(&filaPessoaPrioritarias, &filaPessoa);
                 getchar();
                 break;
-            case 8 :
+            case '8' :
                 system("cls");
-
+                cout<<"Informacoes de empresas unificadas: "<<endl;
+                mostraFilaEmpresaUnificada(&filaEmpresaPrioritarias, &filaEmpresa);
+                getchar();
+                break;
+            case '9' :
+                system("cls");
+                cout<<"Informacoes de empresas unificadas: "<<endl;
+                mostraFilaEmpresaUnificada(&filaEmpresaPrioritarias, &filaEmpresa);
+                getchar();
+                break;
+            case '10' :
+                system("cls");
+                cout<<"Informacoes de empresas unificadas: "<<endl;
+                mostraFilaEmpresaUnificada(&filaEmpresaPrioritarias, &filaEmpresa);
+                getchar();
+                break;
+            default:
+                system("cls");
+                cout<<"Não temos essa opcao!";
                 getchar();
                 break;
         };
