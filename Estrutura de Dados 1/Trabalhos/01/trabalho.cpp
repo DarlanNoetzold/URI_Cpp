@@ -282,16 +282,15 @@ void imprimeLivros(PilhaObjeto *pilhaLivros){
 }
 
 void listaDocao(){
-    char numChar[10];
+    char linha[300];
+    char partes[50];
     int aux=0, soma=0;
     ifstream ler("doacao.txt", ios::in);
     while (!ler.fail()){
-        aux++;
-        ler.getline(numChar, 50, '#');
-        if(aux % 4 ==0){
-            int numAtual = atoi(numChar);
-            cout<<numAtual<<endl;
-            soma += numAtual;
+        while(true){
+            ler.getline(linha, 300, ' # ');
+            aux++;
+            
         }
     }
 

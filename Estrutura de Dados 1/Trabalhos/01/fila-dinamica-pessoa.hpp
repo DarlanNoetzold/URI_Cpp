@@ -181,6 +181,14 @@ bool buscaFilaPessoa(FilaPessoa *f, DadoNoFilaPessoa dado)
     return false;
 }
 
+void totalFilaPessoa(FilaPessoa *f, int *total){
+    NoFilaPessoa *no = f->inicio;
+    while (no){
+        *total++;
+        no = no->prox;
+    }
+}
+
 void destroiFilaPessoa(FilaPessoa *f)
 {
 
