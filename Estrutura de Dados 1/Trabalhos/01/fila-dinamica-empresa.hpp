@@ -128,9 +128,21 @@ void mostraFilaEmpresaUnificada(FilaEmpresa *f1, FilaEmpresa *f2){
         }else if(no->dado.tipo == "equipamento"){
             tipoEquipamento++;
         }
+        no = no->prox;
     }
 
-    cout << "O total de equipamentos na fila eh: " << totalPessoas << endl;
+    NoFilaEmpresa *no2 = f2->inicio;
+    while (no2){
+        totalEmpresas++;
+        if(no2->dado.tipo == "livro"){
+            tipoLivro++;
+        }else if(no2->dado.tipo == "equipamento"){
+            tipoEquipamento++;
+        }
+        no2 = no2->prox;
+    }
+
+    cout << "O total de equipamentos na fila eh: " << totalEmpresas << endl;
     cout << "Existem " << tipoLivro << " empresas de livros." << endl;
     cout << "Existem " << tipoEquipamento << " empresas de equipamentos." << endl;
 

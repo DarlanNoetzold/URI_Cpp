@@ -136,23 +136,25 @@ void mostraFilaPessoaUnificada(FilaPessoa *f1, FilaPessoa *f2){
         else if (no->dado.sexo == "masculino"){
             masc++;
         }
+        no = no->prox;
     }
 
-    NoFilaPessoa *no = f2->inicio;
-    while (no){
+    NoFilaPessoa *no2 = f2->inicio;
+    while (no2){
         totalPessoas++;
-        if (no->dado.defFisico){
+        if (no2->dado.defFisico){
             def++;
         }
-        if (no->dado.gestante){
+        if (no2->dado.gestante){
             gest++;
         }
-        if (no->dado.sexo == "feminino"){
+        if (no2->dado.sexo == "feminino"){
             fem++;
         }
-        else if (no->dado.sexo == "masculino"){
+        else if (no2->dado.sexo == "masculino"){
             masc++;
         }
+        no2 = no2->prox;
     }
 
     cout << "O total de pessoas na fila eh: " << totalPessoas << endl;

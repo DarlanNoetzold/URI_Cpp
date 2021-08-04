@@ -14,13 +14,13 @@ void incluirPessoa(FilaPessoa *filaPessoa, FilaPessoa *filaPessoaPrioritarias){
     string auxS;
     Pessoa p1;
     bool valido=false;
-    fflush(stdin);
     cout<<"Digite o nome completo: "<<endl;
     cin>>p1.nomeCompleto;
     fflush(stdin);
     do{
         cout<<"Digite o sexo (feminino, masculino)"<<endl;
         cin>>auxS;
+        fflush(stdin);
         if(auxS == "feminino" || auxS == "masculino"){
             p1.sexo = auxS;
             valido = true;
@@ -33,6 +33,7 @@ void incluirPessoa(FilaPessoa *filaPessoa, FilaPessoa *filaPessoaPrioritarias){
     do{
         cout<<"Digite o CPF: (11 caracteres)"<<endl;
         cin>>p1.CPF;
+        fflush(stdin);
         if(p1.CPF.size() == 11){
             valido = true;
         }else{
@@ -43,9 +44,11 @@ void incluirPessoa(FilaPessoa *filaPessoa, FilaPessoa *filaPessoaPrioritarias){
     
     cout<<"Digite o idade: "<<endl;
     cin>>p1.idade;
+    fflush(stdin);
     do{
         cout<<"Eh deficiente fisico: (s/n) "<<endl;
         cin>>auxB;
+        fflush(stdin);
         if(auxB == 's'){
             p1.defFisico = true;
             valido = true;
@@ -61,6 +64,7 @@ void incluirPessoa(FilaPessoa *filaPessoa, FilaPessoa *filaPessoaPrioritarias){
     do{
         cout<<"Eh gestante: (s/n) "<<endl;
         cin>>auxB;
+        fflush(stdin);
         if(auxB == 's'){
             p1.gestante = true;
             valido = true;
@@ -92,6 +96,7 @@ void incluirEmpresa(FilaEmpresa *filaEmpresa, FilaEmpresa *filaEmpresaPrioritari
     do{
         cout<<"Digite o tipo (livro, equipamento)"<<endl;
         cin>>auxS;
+        fflush(stdin);
         if(auxS == "livro" || auxS == "equipamento"){
             p1.tipo = auxS;
             valido = true;
@@ -104,6 +109,7 @@ void incluirEmpresa(FilaEmpresa *filaEmpresa, FilaEmpresa *filaEmpresaPrioritari
     do{
         cout<<"Digite o CNPJ: (14 caracteres)"<<endl;
         cin>>p1.CNPJ;
+        fflush(stdin);
         if(p1.CNPJ.size() == 14){
             valido = true;
         }else{
@@ -131,6 +137,7 @@ void atendePessoa(FilaPessoa *filaPessoa, PilhaFichaDoacao *pilhaFichaDoacao, Pi
         do{
             cout<<"Digite o tipo (livro, equipamento)"<<endl;
             cin>>auxS;
+            fflush(stdin);
             if(auxS == "livro" || auxS == "equipamento"){
                 objeto.tipo = auxS;
                 valido = true;
@@ -142,6 +149,7 @@ void atendePessoa(FilaPessoa *filaPessoa, PilhaFichaDoacao *pilhaFichaDoacao, Pi
 
         cout<<"Digite a descricao: "<<endl;
         cin>>objeto.descricao;
+        fflush(stdin);
 
         fichaDoacao.objeto = objeto;
         empilhaFichaDoacao(*(&pilhaFichaDoacao), fichaDoacao);
@@ -159,6 +167,7 @@ void atendePessoa(FilaPessoa *filaPessoa, PilhaFichaDoacao *pilhaFichaDoacao, Pi
         do{
             cout<<"Digite o tipo (livro, equipamento)"<<endl;
             cin>>auxS;
+            fflush(stdin);
             if(auxS == "livro" || auxS == "equipamento"){
                 objeto.tipo = auxS;
                 valido = true;
@@ -170,6 +179,7 @@ void atendePessoa(FilaPessoa *filaPessoa, PilhaFichaDoacao *pilhaFichaDoacao, Pi
 
         cout<<"Digite a descricao: "<<endl;
         cin>>objeto.descricao;
+        fflush(stdin);
 
         fichaDoacao.objeto = objeto;
         empilhaFichaDoacao(*(&pilhaFichaDoacao), fichaDoacao);
@@ -199,9 +209,11 @@ void atendeEmpresa(FilaEmpresa *filaEmpresa, FilaEmpresa *filaEmpresaPrioritaria
         desenfileiraFilaEmpresa(*(&filaEmpresaPrioritarias), &empresa);
         cout<<"Quantos objeto serao retirado: "<<endl;
         cin>>quant;
+        fflush(stdin);
 
         cout<<"Qual o tipo de retirada: (voce esta em priridade entao deve ser livro)"<<endl;
         cin>>verifica;
+        fflush(stdin);
 
         if(verifica == empresa.tipo){
             for(int i = 0; i < quant; i++){
@@ -224,9 +236,11 @@ void atendeEmpresa(FilaEmpresa *filaEmpresa, FilaEmpresa *filaEmpresaPrioritaria
         desenfileiraFilaEmpresa(*(&filaEmpresa), &empresa);
         cout<<"Quantos objeto serao retirado: "<<endl;
         cin>>quant;
+        fflush(stdin);
 
         cout<<"Qual o tipo de retirada: (voce nao esta em prioridade entao deve ser equipamento)"<<endl;
         cin>>verifica;
+        fflush(stdin);
 
         if(verifica == empresa.tipo){
             for(int i = 0; i < quant; i++){
@@ -251,8 +265,42 @@ void atendeEmpresa(FilaEmpresa *filaEmpresa, FilaEmpresa *filaEmpresaPrioritaria
     }
 }
 
-main(){
+void imprimeLivros(PilhaObjeto *pilhaLivros){
+    PilhaObjeto aux;
+    Objeto valor;
+    while(!vaziaObjeto(*(&pilhaLivros))){
+        desempilhaObjeto(*(&pilhaLivros), &valor);
+        empilhaObjeto(&aux, valor);
+        
+    }
 
+    while(!vaziaObjeto(&aux)){
+        desempilhaObjeto(&aux, &valor);
+        cout<<"Livro: "<<valor.descricao<<endl;
+        empilhaObjeto(*(&pilhaLivros), valor);
+    }
+}
+
+void listaDocao(){
+    char numChar[10];
+    int aux=0, soma=0;
+    ifstream ler("doacao.txt", ios::in);
+    while (!ler.fail()){
+        aux++;
+        ler.getline(numChar, 50, '#');
+        if(aux % 4 ==0){
+            int numAtual = atoi(numChar);
+            cout<<numAtual<<endl;
+            soma += numAtual;
+        }
+    }
+
+    cout << "\nSoma: " << soma << endl;
+    getchar();
+    ler.close();
+}
+
+main(){
     cout<<"Inicializando filas:"<<endl;
     FilaPessoa filaPessoa;
     inicializaFilaPessoa(&filaPessoa);
@@ -277,16 +325,19 @@ main(){
     char menu;
     do{
         system("cls");
-        cout << "#########MENU#########" << endl;
-        cout << "# 0 - Sair           #" << endl;
-        cout << "# 1 - A              #" << endl;
-        cout << "# 2 - B              #" << endl;
-        cout << "# 3 - C              #" << endl;
-        cout << "# 4 - D              #" << endl;
-        cout << "# 5 - E              #" << endl;
-        cout << "# 6 - F              #" << endl;
-        cout << "# 7 - G              #" << endl;
-        cout << "######################" << endl;
+        cout << "#########MENU##########" << endl;
+        cout << "# 0  - Sair           #" << endl;
+        cout << "# 1  - A              #" << endl;
+        cout << "# 2  - B              #" << endl;
+        cout << "# 3  - C              #" << endl;
+        cout << "# 4  - D              #" << endl;
+        cout << "# 5  - E              #" << endl;
+        cout << "# 6  - F              #" << endl;
+        cout << "# 7  - G              #" << endl;
+        cout << "# 8  - H              #" << endl;
+        cout << "# 9  - I              #" << endl;
+        cout << "# 10 - J              #" << endl;
+        cout << "#######################" << endl;
         cout << "Sua escolha: ";
         cin >> menu;
         fflush(stdin);//limpa o buffer do teclado
@@ -353,14 +404,13 @@ main(){
                 break;
             case '9' :
                 system("cls");
-                cout<<"Informacoes de empresas unificadas: "<<endl;
-                mostraFilaEmpresaUnificada(&filaEmpresaPrioritarias, &filaEmpresa);
+                cout<<"Imprimindo livros em ordem de doacao: "<<endl;
+                imprimeLivros(&pilhaLivros);
                 getchar();
                 break;
-            case '10' :
+            case 'J' :
                 system("cls");
-                cout<<"Informacoes de empresas unificadas: "<<endl;
-                mostraFilaEmpresaUnificada(&filaEmpresaPrioritarias, &filaEmpresa);
+                listaDocao();
                 getchar();
                 break;
             default:
