@@ -1,4 +1,7 @@
 a#feminino#12365478998#10#DEF_1#GEST_0#OBJ_livro#LIVRO
 darlan#masculino#12345678998#19#DEF_0#GEST_0#OBJ_livro#LIVROAA
 darlan#masculino#12365478998#15#DEF_1#GEST_1#OBJ_livro#LIVROBB
-das#feminino#12365478998#65#DEF_0#GEST_0#OBJ_livro#LIVROCC
+das#feminino#12365478998#66#DEF_0#GEST_0#OBJ_livro#LIVROCC
+teste#masculino#12365478998#58#DEF_0#GEST_0#OBJ_equipamento#equipamnetoA
+teste#feminino#12365478998#19#DEF_1#GEST_0#OBJ_livro#LIVROQUATRO
+darlan#masculino#12365478998#69#DEF_0#GEST_0#OBJ_equipamento#equipamneto

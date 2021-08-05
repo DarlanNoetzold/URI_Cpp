@@ -211,9 +211,12 @@ void atendeEmpresa(FilaEmpresa *filaEmpresa, FilaEmpresa *filaEmpresaPrioritaria
         cin>>quant;
         fflush(stdin);
 
-        cout<<"Qual o tipo de retirada: (voce esta em priridade entao deve ser livro)"<<endl;
-        cin>>verifica;
-        fflush(stdin);
+        do{
+            cout<<"Qual o tipo de retirada: (voce esta em priridade entao deve ser livro)"<<endl;
+            cin>>verifica;
+            fflush(stdin);
+        }while(verifica != empresa.tipo);
+        
 
         if(verifica == empresa.tipo){
             for(int i = 0; i < quant; i++){
@@ -238,15 +241,18 @@ void atendeEmpresa(FilaEmpresa *filaEmpresa, FilaEmpresa *filaEmpresaPrioritaria
         cin>>quant;
         fflush(stdin);
 
-        cout<<"Qual o tipo de retirada: (voce nao esta em prioridade entao deve ser equipamento)"<<endl;
-        cin>>verifica;
-        fflush(stdin);
+        do{
+            cout<<"Qual o tipo de retirada: (voce nao esta em prioridade entao deve ser equipamento)"<<endl;
+            cin>>verifica;
+            fflush(stdin);
+        }while(verifica != empresa.tipo);
+
 
         if(verifica == empresa.tipo){
             for(int i = 0; i < quant; i++){
                 if(desempilhaObjeto(*(&pilhaEquipamentos), &objeto)){
                 ofstream escreve("retirada.txt",ios::app);
-                escreve << empresa.nome <<"#"<< empresa.CNPJ <<"#TRANS_"<< empresa.tipo <<"# OBJ_"<< objeto.tipo <<"#"<<objeto.descricao<<"\n";
+                escreve << empresa.nome <<"#"<< empresa.CNPJ <<"#TRANS_"<< empresa.tipo <<"#OBJ_"<< objeto.tipo <<"#"<<objeto.descricao<<"\n";
                 escreve.close();
                 cout<<"Equipamento Retirado"<<endl;
                 getchar();
@@ -265,68 +271,150 @@ void atendeEmpresa(FilaEmpresa *filaEmpresa, FilaEmpresa *filaEmpresaPrioritaria
     }
 }
 
-void imprimeLivros(PilhaObjeto *pilhaLivros){
+void imprimeObj(PilhaObjeto *pilhaObj){
     PilhaObjeto aux;
     Objeto valor;
-    while(!vaziaObjeto(*(&pilhaLivros))){
-        desempilhaObjeto(*(&pilhaLivros), &valor);
+    while(!vaziaObjeto(*(&pilhaObj))){
+        desempilhaObjeto(*(&pilhaObj), &valor);
         empilhaObjeto(&aux, valor);
         
     }
 
     while(!vaziaObjeto(&aux)){
         desempilhaObjeto(&aux, &valor);
-        cout<<"Livro: "<<valor.descricao<<endl;
-        empilhaObjeto(*(&pilhaLivros), valor);
+        cout<<"Objeto: "<<valor.descricao<<endl;
+        empilhaObjeto(*(&pilhaObj), valor);
     }
+
+    desalocarObjeto(&aux);
 }
 
 void listaDocao(){
-    char linha[300];
-    char partes[12];
-    int aux=0, soma=0;
-    Pessoa pessoaContagem;
+    char partes[20];
+    int aux=0, contPrioridade=0;
+    float soma=0.0;
+    Pessoa empresaMostra;
     Objeto obj;
     FilaPessoa filaPessoasContagem;
     ifstream ler("doacao.txt", ios::in);
     while (!ler.fail()){
+        ler.getline(partes, 20, '#');
+        empresaMostra.nomeCompleto = partes;
+        if(empresaMostra.nomeCompleto == ""){
+            break;
+        }
+        cout<<"Nome: "<<empresaMostra.nomeCompleto<<endl;
+        ler.getline(partes, 20, '#');
+        empresaMostra.sexo = partes;
+        cout<<"Sexo: "<<empresaMostra.sexo<<endl;
+        ler.getline(partes, 20, '#');
+        empresaMostra.CPF = partes;
+        cout<<"CPF: "<<empresaMostra.CPF<<endl;
+        ler.getline(partes, 20, '#DEF_');
+        empresaMostra.idade = atoi(partes);
+        cout<<"Idade: "<<empresaMostra.idade<<endl;
+        ler.getline(partes, 20, '#GEST_');
+        empresaMostra.defFisico = atoi(partes);
+        cout<<"Eh deficiente fisico: (sim=1, nao=0) "<<empresaMostra.defFisico<<endl;
+        ler.getline(partes, 20, '#OBJ_');
+        empresaMostra.gestante = atoi(partes);
+        cout<<"Eh gestante: (sim=1, nao=0) "<<empresaMostra.gestante<<endl;
+
+        ler.getline(partes, 20, '#');
+        obj.tipo = partes;
+        ler.getline(partes, 20, '\n');
+        obj.descricao = partes;
+
+
+        enfileiraFilaPessoa(&filaPessoasContagem, empresaMostra);
         aux++;
 
-        ler.getline(partes, 12, '#');
-        pessoaContagem.nomeCompleto = partes;
-        cout<<pessoaContagem.nomeCompleto<<endl;
-        ler.getline(partes, 12, '#');
-        pessoaContagem.sexo = partes;
-        cout<<pessoaContagem.sexo<<endl;
-        ler.getline(partes, 12, '#');
-        pessoaContagem.CPF = partes;
-        cout<<pessoaContagem.CPF<<endl;
-        ler.getline(partes, 12, '#DEF_');
-        pessoaContagem.idade = atoi(partes);
-        cout<<pessoaContagem.idade<<endl;
-        ler.getline(partes, 12, '#GEST_');
-        pessoaContagem.defFisico = atoi(partes);
-        cout<<pessoaContagem.defFisico<<endl;
-        ler.getline(partes, 12, '#OBJ_');
-        pessoaContagem.gestante = atoi(partes);
-        cout<<pessoaContagem.gestante<<endl;
-
-        ler.getline(partes, 12, '#');
-        obj.tipo = partes;
-        cout<<obj.tipo;
-        ler.getline(partes, 12, '\n');
-        obj.descricao = partes;
-        cout<<obj.descricao;
-
-
-        enfileiraFilaPessoa(&filaPessoasContagem, pessoaContagem);
-        mostraFilaPessoa(&filaPessoasContagem);
         getchar();
         
     }
 
-    cout << "\nSoma: " << soma << endl;
+    while(desenfileiraFilaPessoa(&filaPessoasContagem, &empresaMostra)){
+        soma += empresaMostra.idade;
+
+        if(empresaMostra.defFisico || empresaMostra.gestante || empresaMostra.idade > 65){
+            contPrioridade++;
+        }
+    }
+    
+    cout<<"Tem "<< aux<<" cadastrados!"<<endl;
+    cout<<"A media das idades eh: "<< soma/aux<<endl;
+    cout<<"Existem "<<contPrioridade<<" pessoas com prioridade."<<endl;
+
+    destroiFilaPessoa(&filaPessoasContagem);
+    ler.close();
+}
+
+void retornaCPF(string cpfBusca){
+    int aux=0;
+    char partes[20];
+    Pessoa empresaMostra;
+    Objeto obj;
+    ifstream ler("doacao.txt", ios::in);
+    while (!ler.fail()){
+        ler.getline(partes, 20, '#');
+        empresaMostra.nomeCompleto = partes;
+        if(empresaMostra.nomeCompleto == ""){
+            break;
+        }
+        ler.getline(partes, 20, '#');
+        empresaMostra.sexo = partes;
+        ler.getline(partes, 20, '#');
+        empresaMostra.CPF = partes;
+        ler.getline(partes, 20, '#DEF_');
+        empresaMostra.idade = atoi(partes);
+        ler.getline(partes, 20, '#GEST_');
+        empresaMostra.defFisico = atoi(partes);
+        ler.getline(partes, 20, '#OBJ_');
+        empresaMostra.gestante = atoi(partes);
+        ler.getline(partes, 20, '#');
+        obj.tipo = partes;
+        ler.getline(partes, 20, '\n');
+        obj.descricao = partes;
+
+        if(empresaMostra.CPF == cpfBusca){
+            aux++;
+        }        
+    }
+
+    cout<<"Existem "<<aux<<" doacoes feitas por este CPF";
     getchar();
+    ler.close();
+}
+
+void listaRetirada(){
+    char partes[30];
+    Empresa empresaMostra;
+    Objeto obj;
+    ifstream ler("retirada.txt", ios::in);
+    while (!ler.fail()){
+        ler.getline(partes, 30, '#');
+        empresaMostra.nome = partes;
+        if(empresaMostra.nome == ""){
+            break;
+        }
+        cout<<"Nome: "<<empresaMostra.nome<<endl;
+        ler.getline(partes, 30, '#');
+        empresaMostra.CNPJ = partes;
+        cout<<"CNPJ: "<<empresaMostra.CNPJ<<endl;
+        ler.getline(partes, 30, '#');
+        empresaMostra.tipo = partes;
+        cout<<"Tipo: "<<empresaMostra.CNPJ<<endl;
+        
+        ler.getline(partes, 30, '#');
+        obj.tipo = partes;
+        cout<<"Tipo do objeto: "<<obj.tipo<<endl;
+        ler.getline(partes, 30, '\n');
+        obj.descricao = partes;
+        cout<<"Descricao do objeto: "<<obj.descricao<<endl;
+
+        getchar(); 
+    }
+
     ler.close();
 }
 
@@ -353,20 +441,24 @@ main(){
     int valor;
     int indice = 0;
     char menu;
+    string buscaCPF;
     do{
         system("cls");
         cout << "#########MENU##########" << endl;
-        cout << "# 0  - Sair           #" << endl;
-        cout << "# 1  - A              #" << endl;
-        cout << "# 2  - B              #" << endl;
-        cout << "# 3  - C              #" << endl;
-        cout << "# 4  - D              #" << endl;
-        cout << "# 5  - E              #" << endl;
-        cout << "# 6  - F              #" << endl;
-        cout << "# 7  - G              #" << endl;
-        cout << "# 8  - H              #" << endl;
-        cout << "# 9  - I              #" << endl;
-        cout << "# 10 - J              #" << endl;
+        cout << "# ----------Sair----------#" << endl;
+        cout << "# -----------A------------#" << endl;
+        cout << "# -----------B------------#" << endl;
+        cout << "# -----------C------------#" << endl;
+        cout << "# -----------D------------#" << endl;
+        cout << "# -----------E------------#" << endl;
+        cout << "# -----------F------------#" << endl;
+        cout << "# -----------G------------#" << endl;
+        cout << "# -----------H------------#" << endl;
+        cout << "# -----------I------------#" << endl;
+        cout << "# -----------J------------#" << endl;
+        cout << "# -----------K------------#" << endl;
+        cout << "# -----------L------------#" << endl;
+        cout << "# -----------M------------#" << endl;
         cout << "#######################" << endl;
         cout << "Sua escolha: ";
         cin >> menu;
@@ -378,31 +470,31 @@ main(){
                 cout << "PROGRAMA FINALIZADO";
                 getchar();
                 break;
-            case '1' :
+            case 'A' :
                 system("cls");
                 cout<<"Enfielirando pessoa..."<<endl;
                 incluirPessoa(&filaPessoa, &filaPessoaPrioritarias);
                 getchar();
                 break;
-            case '2' :
+            case 'B' :
                 system("cls");
                 cout<<"Enfielirando empresa..."<<endl;
                 incluirEmpresa(&filaEmpresa, &filaEmpresaPrioritarias);
                 getchar();
                 break;
-            case '3' :
+            case 'C' :
                 system("cls");
                 cout<<"Atendendo pessoa..."<<endl;
                 atendePessoa(&filaPessoa, &pilhaFichaDoacao, &pilhaLivros, &pilhaEquipamentos, &filaPessoaPrioritarias);
                 getchar();
                 break;
-            case '4' :
+            case 'D' :
                 system("cls");
                 cout<<"Atendendo empresa..."<<endl;
                 atendeEmpresa(&filaEmpresa, &filaEmpresaPrioritarias, &pilhaLivros, &pilhaEquipamentos);
                 getchar();
                 break;
-            case '5' :
+            case 'E' :
                 system("cls");
                 cout<<"Pessoas prioritarias: "<<endl;
                 mostraFilaPessoa(&filaPessoaPrioritarias);
@@ -411,7 +503,7 @@ main(){
                 mostraFilaPessoa(&filaPessoa);
                 getchar();
                 break;
-            case '6' :
+            case 'F' :
                 system("cls");
                 cout<<"Empresas prioritarias: "<<endl;
                 mostraFilaEmpresa(&filaEmpresaPrioritarias);
@@ -420,27 +512,45 @@ main(){
                 mostraFilaEmpresa(&filaEmpresa);
                 getchar();
                 break;
-            case '7' :
+            case 'G' :
                 system("cls");
                 cout<<"Informacoes de pessoas unificadas: "<<endl;
                 mostraFilaPessoaUnificada(&filaPessoaPrioritarias, &filaPessoa);
                 getchar();
                 break;
-            case '8' :
+            case 'H' :
                 system("cls");
                 cout<<"Informacoes de empresas unificadas: "<<endl;
                 mostraFilaEmpresaUnificada(&filaEmpresaPrioritarias, &filaEmpresa);
                 getchar();
                 break;
-            case '9' :
+            case 'I' :
                 system("cls");
-                cout<<"Imprimindo livros em ordem de doacao: "<<endl;
-                imprimeLivros(&pilhaLivros);
+                cout<<"Imprimindo equipamentos em ordem de doacao: "<<endl;
+                imprimeObj(&pilhaEquipamentos);
                 getchar();
                 break;
             case 'J' :
                 system("cls");
+                cout<<"Imprimindo livros em ordem de doacao: "<<endl;
+                imprimeObj(&pilhaLivros);
+                getchar();
+                break;
+            case 'K' :
+                system("cls");
                 listaDocao();
+                getchar();
+                break;
+            case 'L' :
+                system("cls");
+                cout<<"Digite o CPF a ser buscado: ";
+                cin>>buscaCPF;
+                retornaCPF(buscaCPF);
+                getchar();
+                break;
+            case 'M' :
+                system("cls");
+                listaRetirada();
                 getchar();
                 break;
             default:

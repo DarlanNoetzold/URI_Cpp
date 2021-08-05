@@ -1,1 +1,3 @@
 
+EmpresaF#12365478998741#TRANS_livro#OBJ_livro#LIVROQUATRO
+EmpresaD#12365478998741#TRANS_equipamento#OBJ_equipamento#equipamneto
