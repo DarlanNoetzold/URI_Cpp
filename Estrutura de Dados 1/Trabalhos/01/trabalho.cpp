@@ -159,7 +159,7 @@ void atendePessoa(FilaPessoa *filaPessoa, PilhaFichaDoacao *pilhaFichaDoacao, Pi
             empilhaObjeto(*(&pilhaEquipamentos), objeto);
         }
         ofstream escreve("doacao.txt",ios::app);
-        escreve << fichaDoacao.pessoa.nomeCompleto <<" # "<< fichaDoacao.pessoa.sexo <<" # "<< fichaDoacao.pessoa.CPF <<" # "<< fichaDoacao.pessoa.idade <<" # DEF_"<< fichaDoacao.pessoa.defFisico <<" # GEST_"<< fichaDoacao.pessoa.gestante <<" # OBJ_"<< objeto.tipo <<" # "<<objeto.descricao<<"\n";
+        escreve << fichaDoacao.pessoa.nomeCompleto <<"#"<< fichaDoacao.pessoa.sexo <<"#"<< fichaDoacao.pessoa.CPF <<"#"<< fichaDoacao.pessoa.idade <<"#DEF_"<< fichaDoacao.pessoa.defFisico <<"#GEST_"<< fichaDoacao.pessoa.gestante <<"#OBJ_"<< objeto.tipo <<"#"<<objeto.descricao<<"\n";
         escreve.close();
     }else if(!vaziaFilaPessoa(filaPessoa)){
         desenfileiraFilaPessoa(*(&filaPessoa), &valor);
@@ -189,7 +189,7 @@ void atendePessoa(FilaPessoa *filaPessoa, PilhaFichaDoacao *pilhaFichaDoacao, Pi
             empilhaObjeto(*(&pilhaEquipamentos), objeto);
         }
         ofstream escreve("doacao.txt",ios::app);
-        escreve << fichaDoacao.pessoa.nomeCompleto <<" # "<< fichaDoacao.pessoa.sexo <<" # "<< fichaDoacao.pessoa.CPF <<" # "<< fichaDoacao.pessoa.idade <<" # DEF_"<< fichaDoacao.pessoa.defFisico <<" # GEST_"<< fichaDoacao.pessoa.gestante <<" # OBJ_"<< objeto.tipo <<" # "<<objeto.descricao<<"\n";
+        escreve << fichaDoacao.pessoa.nomeCompleto <<"#"<< fichaDoacao.pessoa.sexo <<"#"<< fichaDoacao.pessoa.CPF <<"#"<< fichaDoacao.pessoa.idade <<"#DEF_"<< fichaDoacao.pessoa.defFisico <<"#GEST_"<< fichaDoacao.pessoa.gestante <<"#OBJ_"<< objeto.tipo <<"#"<<objeto.descricao<<"\n";
         escreve.close();
     }else{
         cout<<"Nao tem mais pessoas!"<<endl;
@@ -219,7 +219,7 @@ void atendeEmpresa(FilaEmpresa *filaEmpresa, FilaEmpresa *filaEmpresaPrioritaria
             for(int i = 0; i < quant; i++){
                 if(desempilhaObjeto(*(&pilhaLivros), &objeto)){
                 ofstream escreve("retirada.txt",ios::app);
-                escreve << empresa.nome <<" # "<< empresa.CNPJ <<" # TRANS_"<< empresa.tipo <<" # OBJ_"<< objeto.tipo <<" # "<<objeto.descricao<<"\n";
+                escreve << empresa.nome <<"#"<< empresa.CNPJ <<"#TRANS_"<< empresa.tipo <<"#OBJ_"<< objeto.tipo <<"#"<<objeto.descricao<<"\n";
                 escreve.close();
                 cout<<"Livro Retirado"<<endl;
                 getchar();
@@ -246,7 +246,7 @@ void atendeEmpresa(FilaEmpresa *filaEmpresa, FilaEmpresa *filaEmpresaPrioritaria
             for(int i = 0; i < quant; i++){
                 if(desempilhaObjeto(*(&pilhaEquipamentos), &objeto)){
                 ofstream escreve("retirada.txt",ios::app);
-                escreve << empresa.nome <<" # "<< empresa.CNPJ <<" # TRANS_"<< empresa.tipo <<" # OBJ_"<< objeto.tipo <<" # "<<objeto.descricao<<"\n";
+                escreve << empresa.nome <<"#"<< empresa.CNPJ <<"#TRANS_"<< empresa.tipo <<"# OBJ_"<< objeto.tipo <<"#"<<objeto.descricao<<"\n";
                 escreve.close();
                 cout<<"Equipamento Retirado"<<endl;
                 getchar();
@@ -283,15 +283,46 @@ void imprimeLivros(PilhaObjeto *pilhaLivros){
 
 void listaDocao(){
     char linha[300];
-    char partes[50];
+    char partes[12];
     int aux=0, soma=0;
+    Pessoa pessoaContagem;
+    Objeto obj;
+    FilaPessoa filaPessoasContagem;
     ifstream ler("doacao.txt", ios::in);
     while (!ler.fail()){
-        while(true){
-            ler.getline(linha, 300, ' # ');
-            aux++;
-            
-        }
+        aux++;
+
+        ler.getline(partes, 12, '#');
+        pessoaContagem.nomeCompleto = partes;
+        cout<<pessoaContagem.nomeCompleto<<endl;
+        ler.getline(partes, 12, '#');
+        pessoaContagem.sexo = partes;
+        cout<<pessoaContagem.sexo<<endl;
+        ler.getline(partes, 12, '#');
+        pessoaContagem.CPF = partes;
+        cout<<pessoaContagem.CPF<<endl;
+        ler.getline(partes, 12, '#DEF_');
+        pessoaContagem.idade = atoi(partes);
+        cout<<pessoaContagem.idade<<endl;
+        ler.getline(partes, 12, '#GEST_');
+        pessoaContagem.defFisico = atoi(partes);
+        cout<<pessoaContagem.defFisico<<endl;
+        ler.getline(partes, 12, '#OBJ_');
+        pessoaContagem.gestante = atoi(partes);
+        cout<<pessoaContagem.gestante<<endl;
+
+        ler.getline(partes, 12, '#');
+        obj.tipo = partes;
+        cout<<obj.tipo;
+        ler.getline(partes, 12, '\n');
+        obj.descricao = partes;
+        cout<<obj.descricao;
+
+
+        enfileiraFilaPessoa(&filaPessoasContagem, pessoaContagem);
+        mostraFilaPessoa(&filaPessoasContagem);
+        getchar();
+        
     }
 
     cout << "\nSoma: " << soma << endl;
