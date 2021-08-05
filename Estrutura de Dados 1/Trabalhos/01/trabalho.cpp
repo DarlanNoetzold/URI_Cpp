@@ -444,7 +444,7 @@ main(){
     string buscaCPF;
     do{
         system("cls");
-        cout << "#########MENU##########" << endl;
+        cout << "############MENU###########" << endl;
         cout << "# ----------Sair----------#" << endl;
         cout << "# -----------A------------#" << endl;
         cout << "# -----------B------------#" << endl;
@@ -459,8 +459,9 @@ main(){
         cout << "# -----------K------------#" << endl;
         cout << "# -----------L------------#" << endl;
         cout << "# -----------M------------#" << endl;
-        cout << "#######################" << endl;
+        cout << "###########################" << endl;
         cout << "Sua escolha: ";
+        menu = toupper(menu);
         cin >> menu;
         fflush(stdin);//limpa o buffer do teclado
 
