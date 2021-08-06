@@ -322,8 +322,9 @@ void listaDocao(){
 
         ler.getline(partes, 20, '#');
         obj.tipo = partes;
+        cout<<"Tipo do objeto: "<<obj.tipo<<endl;
         ler.getline(partes, 20, '\n');
-        obj.descricao = partes;
+        cout<<"Descricao do objeto: "<<obj.descricao<<endl;
 
 
         enfileiraFilaPessoa(&filaPessoasContagem, empresaMostra);
@@ -445,7 +446,7 @@ main(){
     do{
         system("cls");
         cout << "############MENU###########" << endl;
-        cout << "# ----------Sair----------#" << endl;
+        cout << "# --------Sair(0)---------#" << endl;
         cout << "# -----------A------------#" << endl;
         cout << "# -----------B------------#" << endl;
         cout << "# -----------C------------#" << endl;

@@ -1,3 +1,8 @@
 
 EmpresaF#12365478998741#TRANS_livro#OBJ_livro#LIVROQUATRO
 EmpresaD#12365478998741#TRANS_equipamento#OBJ_equipamento#equipamneto
+EmpresaLivroA#12365478998741#TRANS_livro#OBJ_livro#LIVROC
+EmpresaLivroA#12365478998741#TRANS_livro#OBJ_livro#LIVROB
+EmpresaLivroB#12365478998741#TRANS_livro#OBJ_livro#LivroA
+EmpresaEquipamentoA#12365478998741#TRANS_equipamento#OBJ_equipamento#TOOLB
+EmpresaEquipamentoA#12365478998741#TRANS_equipamento#OBJ_equipamento#TOOLA
