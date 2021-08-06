@@ -461,8 +461,8 @@ main(){
         cout << "# -----------M------------#" << endl;
         cout << "###########################" << endl;
         cout << "Sua escolha: ";
-        menu = toupper(menu);
         cin >> menu;
+        menu = toupper(menu);
         fflush(stdin);//limpa o buffer do teclado
 
         switch(menu){
