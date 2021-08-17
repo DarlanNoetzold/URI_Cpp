@@ -131,7 +131,7 @@ main(){
         cout << "###############MENU###############" << endl;
         cout << "# 0 - Sair                       #" << endl;
         cout << "# 1 - Alimentar lista            #" << endl;
-        cout << "# 2 - Inserir                    #" << endl;
+        cout << "# 2 - Lista sao Iguais           #" << endl;
         cout << "# 3 - Remover                    #" << endl;
         cout << "# 4 - Consultar                  #" << endl;
         cout << "# 5 - Mostrar                    #" << endl;
