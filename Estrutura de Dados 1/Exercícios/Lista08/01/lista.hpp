@@ -147,46 +147,4 @@ bool inserePosicaoL(No **lista, DadoNoLista valor, int posicao)
     return true;
 }
 
-bool igual(No **lista1, No **lista2){
-    int aux1=0;
-    No *n1 = *lista1;
-    while (n1){
-        aux1++;
-        n1 = n1->prox;
-    }
-    int aux2=0;
-    No *n2 = *lista2;
-    while (n2){
-        aux2++;
-        n2 = n2->prox;
-    }
-    if(aux1 != aux2){
-        return false;
-    }else{
-        No *n1 = *lista1;
-        No *n2 = *lista2;
-        while(n1){
-            if(n1->dado != n2->dado){
-                return false;
-            }
-            n1 = n1->prox;
-            n2 = n2->prox;
-        }
-        return true;
-    }
-}
-
-void insereOrdenado(No **lista, int valor){
-    
-}
-
 #endif // _HPP_LISTA_DINAMICA
-
-
-
-
-
-
-
-
-

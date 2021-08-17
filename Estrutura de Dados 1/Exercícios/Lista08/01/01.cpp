@@ -20,6 +20,7 @@ main(){
         cout << "# 3 - Remover                    #" << endl;
         cout << "# 4 - Consultar                  #" << endl;
         cout << "# 5 - Mostrar                    #" << endl;
+        cout << "# 6 - Insere Pocicao             #" << endl;
         cout << "##################################" << endl;
         cout << "Sua escolha: ";
         cin >> menu;
@@ -61,7 +62,7 @@ main(){
             case 3 :
                 system("cls");
                 if(indice == 0){
-                    cout<<"Inicialize priemrio a fila!"<<endl;
+                    cout<<"Inicialize priemrio a lista!"<<endl;
                 }else{
                     cout<<"Digite o valor a ser removido: ";
                     cin>>valor;
@@ -94,7 +95,7 @@ main(){
             case 5 :
                 system("cls");
                 if(indice == 0){
-                    cout<<"Inicialize primeiro a pilha!"<<endl;
+                    cout<<"Inicialize primeiro a lista!"<<endl;
                 }else{
                     mostraL(&l1);
                 }
