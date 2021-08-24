@@ -1,3 +1,5 @@
+#include <bits/stdc++.h>
+using namespace std;
 #ifndef _HPP_LISTA_DINAMICA
 #define _HPP_LISTA_DINAMICA
 
@@ -150,29 +152,38 @@ bool inserePosicaoL(No **lista, DadoNoLista valor, int posicao)
 bool verificaOrd(No **lista){
     No *n = *lista;
     No *aux = new No();
+    inicializaL(&aux);
 
-    aux->dado = n->dado;
-    n = n->prox;
-    
-    if(n->dado >= aux->dado){
-        aux = aux->prox;
+    if(n){
+        insereL(&aux, n->dado);
         n = n->prox;
-        while(n){
-            
+        if(n->dado <= aux->dado){
+            aux = aux->prox;
+            insereL(&aux, n->dado);        
+            n = n->prox;
+            while(n){
+                if(n->dado >= aux->dado){
+                    return false;
+                }
+                aux = aux->prox;
+                insereL(&aux, n->dado);
+                n = n->prox;                
+            }
+        } else if(n->dado >= aux->dado){
+            aux = aux->prox;
+            insereL(&aux, n->dado);
+            n = n->prox;
+            while(n){
+                if(n->dado <= aux->dado){
+                    return false;
+                }
+                aux = aux->prox;
+                insereL(&aux, n->dado);
+                n = n->prox;
+            }
         }
     }
-    if(n->dado <= aux->dado){
-        aux = aux->prox;
-        n = n->prox;
-        while(n){
-            
-        }
-    }
-
-    
-
-        
-    }
+    return true;   
 }
 
 #endif // _HPP_LISTA_DINAMICA

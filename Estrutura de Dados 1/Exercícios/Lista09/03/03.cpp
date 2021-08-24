@@ -7,8 +7,7 @@ main(){
     setlocale(LC_ALL, "Portuguese");
 
     No* l1;
-    No* aux;
-    int tamPilha, valor, posicao;
+    int valor, posicao;
 
     int menu = -1, indice = 0;
 
@@ -105,7 +104,7 @@ main(){
                 break;
             case 6 :
                 system("cls");
-                    if(indice < 0){
+                    if(indice == 0){
                         cout << "E necessario criar uma lista"<<endl;
                     }else{
                         cout<<"Digite o valor: ";
@@ -121,10 +120,14 @@ main(){
                     break;
             case 7 :
                 system("cls");
-                    if(indice < 0){
+                    if(indice == 0){
                         cout << "E necessario criar uma lista"<<endl;
                     }else{
-                        
+                        if(verificaOrd(&l1)){
+                            cout<<"Esta ordenado"<<endl;
+                        }else{
+                            cout<<"Nao esta ordenado"<<endl;
+                        }
                     }
                     getchar();
                     break;

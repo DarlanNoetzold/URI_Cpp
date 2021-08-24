@@ -1,7 +1,7 @@
 #ifndef _HPP_LISTA_DINAMICA
 #define _HPP_LISTA_DINAMICA
 
-typedef int DadoNoLista;
+typedef char DadoNoLista;
 
 struct No
 {
@@ -145,6 +145,11 @@ bool inserePosicaoL(No **lista, DadoNoLista valor, int posicao)
     }
 
     return true;
+}
+
+void inverte(No **lista, No **invertido){
+    No *n = *lista;
+
 }
 
 #endif // _HPP_LISTA_DINAMICA

@@ -21,6 +21,7 @@ main(){
         cout << "# 4 - Consultar                  #" << endl;
         cout << "# 5 - Mostrar                    #" << endl;
         cout << "# 6 - Insere Pocicao             #" << endl;
+        cout << "# 7 - Inverte                    #" << endl;
         cout << "##################################" << endl;
         cout << "Sua escolha: ";
         cin >> menu;
@@ -117,6 +118,16 @@ main(){
                     }
                     getchar();
                     break;
+                case 7 :
+                    system("cls");
+                        if(indice < 0){
+                            cout << "E necessario criar uma lista"<<endl;
+                        }else{
+                            No* inv;
+                            inicializaL(&inv);
+                        }
+                        getchar();
+                        break;
         };
 
     }while(menu != 0);
