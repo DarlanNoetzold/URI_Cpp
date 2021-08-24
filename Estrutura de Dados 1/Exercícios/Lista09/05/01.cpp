@@ -7,8 +7,8 @@ main(){
     setlocale(LC_ALL, "Portuguese");
 
     No* l1;
-    int tamPilha, posicao;
-    char valor;
+    int tamPilha, valor, posicao;
+
     int menu = -1, indice = 0;
 
     do{
@@ -21,7 +21,7 @@ main(){
         cout << "# 4 - Consultar                  #" << endl;
         cout << "# 5 - Mostrar                    #" << endl;
         cout << "# 6 - Insere Pocicao             #" << endl;
-        cout << "# 7 - Inverte                    #" << endl;
+        cout << "# 7 - Troca de pos               #" << endl;
         cout << "##################################" << endl;
         cout << "Sua escolha: ";
         cin >> menu;
@@ -118,20 +118,18 @@ main(){
                     }
                     getchar();
                     break;
-                case 7 :
-                    system("cls");
-                        if(indice < 0){
-                            cout << "E necessario criar uma lista"<<endl;
-                        }else{
-                            No* inv;
-                            inicializaL(&inv);
-                            
-                            inverte(&l1, &inv);
+            case 7 :
+                system("cls");
+                    if(indice < 0){
+                        cout << "E necessario criar uma lista"<<endl;
+                    }else{
+                        cout<<"Diggite quantos voce deseja passar para o fim";
+                        cin>>valor;
 
-                            mostraL(&inv);
-                        }
-                        getchar();
-                        break;
+                        trocaPos(&l1, valor);
+                    }
+                    getchar();
+                    break;
         };
 
     }while(menu != 0);

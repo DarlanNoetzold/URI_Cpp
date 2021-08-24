@@ -1,7 +1,7 @@
 #ifndef _HPP_LISTA_DINAMICA
 #define _HPP_LISTA_DINAMICA
 
-typedef char DadoNoLista;
+typedef int DadoNoLista;
 
 struct No
 {
@@ -147,49 +147,37 @@ bool inserePosicaoL(No **lista, DadoNoLista valor, int posicao)
     return true;
 }
 
-int final(No **lista){
-    No *atual = *lista;
-    int p=0;
-    while(atual){
-        p++;
-        atual = atual->prox;
-    }
-    return p;
-}
-
-bool removeFinal(No **lista, char *valor){
-
+bool removePosicao(No **lista, int posicao, int *valor){
     No *anterior = nullptr;
     No *atual = *lista;
-    
-    while(atual && final(&atual) >1)
-    {
+    int p=0;
+    while(atual && p != posicao){
         anterior = atual;
         atual = atual->prox;
+        p++;
     }
-    
     if(!atual) 
         return false;
-
-    if (!anterior){
+    if (!anterior) {
         *lista = atual->prox;
-    }else{
+    }
+    else {
         anterior->prox = atual->prox;
     }
+
     *valor = atual->dado;
+
     delete(atual);
     return true;
 }
 
+bool trocaPos(No **lista, int quant){
+    int valor;
+    for(int i = 0; i < quant; i++){
+        removePosicao(&(*lista), i, &valor);
 
-void inverte(No **lista, No **invertido){
-    char valor;
-    No *lis = *lista;
-    while(removeFinal(&lis, &valor)){
-        cout<<"val: "<<valor<<endl;
-        insereL(&(*invertido), valor);
+        insereL(&(*lista), valor);
     }
-    
 }
 
 #endif // _HPP_LISTA_DINAMICA
