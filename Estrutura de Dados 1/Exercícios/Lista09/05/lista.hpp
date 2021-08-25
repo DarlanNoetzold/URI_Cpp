@@ -1,3 +1,5 @@
+#include <bits/stdc++.h>
+using namespace std;
 #ifndef _HPP_LISTA_DINAMICA
 #define _HPP_LISTA_DINAMICA
 
@@ -171,11 +173,21 @@ bool removePosicao(No **lista, int posicao, int *valor){
     return true;
 }
 
-bool trocaPos(No **lista, int quant){
+int final(No **lista){
+    No *atual = *lista;
+    int p=0;
+    while(atual){
+        p++;
+        atual = atual->prox;
+    }
+    return p;
+}
+
+void trocaPos(No **lista, int quant){
     int valor;
     for(int i = 0; i < quant; i++){
-        removePosicao(&(*lista), i, &valor);
-
+        removePosicao(&(*lista), final(&(*lista))-1, &valor);
+        
         insereL(&(*lista), valor);
     }
 }

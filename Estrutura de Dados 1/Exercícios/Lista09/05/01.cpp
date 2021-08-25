@@ -123,7 +123,7 @@ main(){
                     if(indice < 0){
                         cout << "E necessario criar uma lista"<<endl;
                     }else{
-                        cout<<"Diggite quantos voce deseja passar para o fim";
+                        cout<<"Digite quantos voce deseja passar para o fim: ";
                         cin>>valor;
 
                         trocaPos(&l1, valor);

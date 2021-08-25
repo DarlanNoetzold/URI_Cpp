@@ -157,16 +157,10 @@ int final(No **lista){
     return p;
 }
 
-bool removeFinal(No **lista, char *valor){
+bool removeIni(No **lista, char *valor){
 
     No *anterior = nullptr;
     No *atual = *lista;
-    
-    while(atual && final(&atual) >1)
-    {
-        anterior = atual;
-        atual = atual->prox;
-    }
     
     if(!atual) 
         return false;
@@ -185,7 +179,7 @@ bool removeFinal(No **lista, char *valor){
 void inverte(No **lista, No **invertido){
     char valor;
     No *lis = *lista;
-    while(removeFinal(&lis, &valor)){
+    while(removeIni(&lis, &valor)){
         cout<<"val: "<<valor<<endl;
         insereL(&(*invertido), valor);
     }
