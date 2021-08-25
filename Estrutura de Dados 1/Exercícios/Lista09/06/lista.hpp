@@ -101,18 +101,18 @@ bool removeL(No **lista, DadoNoLista valor)
 }
 
 
-No* buscaL(No **lista, DadoNoLista valor)
+string buscaL(No **lista, DadoNoLista valor)
 {
     No *n = *lista;
     while (n)
     {
-        if (n->dado == valor)
-            return n;
+        if (!valor.compare(n->dado))
+            return n->dado;
 
         n = n->prox;
     }
 
-    return nullptr;
+    return "";
 }
 
 
@@ -144,6 +144,24 @@ bool inserePosicaoL(No **lista, DadoNoLista valor, int posicao)
         anterior->prox = novo;
     }
 
+    return true;
+}
+
+bool removeIni(No **lista, string *valor){
+
+    No *anterior = nullptr;
+    No *atual = *lista;
+    
+    if(!atual) 
+        return false;
+
+    if (!anterior){
+        *lista = atual->prox;
+    }else{
+        anterior->prox = atual->prox;
+    }
+    *valor = atual->dado;
+    delete(atual);
     return true;
 }
 

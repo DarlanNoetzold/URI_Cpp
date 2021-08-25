@@ -4,8 +4,18 @@ using namespace std;
 #include "lista.hpp"
 
 
-void naoSegura(No **senhas, No **senhaSeg){
-
+void naoSegura(No **senhas, No **senhaNaoSeg){
+    string valor;
+    inicializaL(&(*senhaNaoSeg));
+    while(removeIni(&(*senhas), &valor)){
+        cout<<buscaL(&(*senhaNaoSeg), valor)<<endl;
+        if(buscaL(&(*senhaNaoSeg), valor) != ""){
+            insereL(&(*senhaNaoSeg), valor);
+        }
+        if(valor.length() <= 4){
+            insereL(&(*senhaNaoSeg), valor);
+        }
+    }
 }
 
 main(){
@@ -19,12 +29,14 @@ main(){
         cout<<"Digite a senha: ";
         cin>>senha;
         insereL(&senhas, senha);
-        cout<<"Deseja sair? (s-n)";
+        cout<<"Deseja sair? (s-n) ";
         cin>>op;
-    }while(op == 's' || op =='S');
+    }while(op == 's' || op == 'S');
     
-
-    
-
+    No* senhaNaoSeg;
+    inicializaL(&senhaNaoSeg);
+    naoSegura(&senhas, &senhaNaoSeg);
+    cout<<"Senhas nao seguras: "<<endl;
+    mostraL(&senhaNaoSeg);
     destroiL(&senhas);
 }
