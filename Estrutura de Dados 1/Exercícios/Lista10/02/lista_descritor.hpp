@@ -185,6 +185,14 @@ bool inserePosicaoL(Lista *lista, DadoNoLista valor, int posicao)
     return true;
 }
 
+void mostraDescritorL(Lista *lista){
+    if(lista->fim && lista->inicio){
+        cout<<"Descritor ["<<lista->tamanho<<", "<<lista->fim<<", "<<lista->inicio<<"]";
+    }else{
+        cout<<"NULL";
+    }
+}
+
 
 
 #endif // _HPP_LISTA_DESCRITOR

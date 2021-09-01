@@ -7,7 +7,8 @@ main(){
     setlocale(LC_ALL, "Portuguese");
 
     Lista *lista = new Lista();
-    int valor, posicao;
+    Func valor;
+    int posicao;
 
     int menu = -1;
 
@@ -34,7 +35,7 @@ main(){
             case 2 :
                 system("cls");
                 cout<<"Digite o valor: ";
-                cin>>valor;
+                cin>>valor.cod;
                 if(insereInicioL(lista, valor)){
                     cout<<"valor inserido!"<<endl;
                     getchar();
@@ -44,9 +45,9 @@ main(){
             case 3 :
                 system("cls");
                 cout << "Digite o valor a ser removido: ";
-                cin >> valor;
+                cin >> valor.cod;
                 if (removeL(lista, valor)){
-                    cout << "Valor removido: " << valor << endl;
+                    cout << "Valor removido: " << valor.cod << endl;
                 }
                 else{
                     cout << "Valor não encontrado!" << endl;
@@ -57,13 +58,13 @@ main(){
             case 4 :
                 system("cls");
                 cout << "Digite o valor: ";
-                cin >> valor;
+                cin >> valor.cod;
                 if (buscaL(lista, valor)){
-                    cout << "O valor " << valor << " foi encontrado na pilha!\n";
+                    cout << "O valor " << valor.cod << " foi encontrado na pilha!\n";
                     getchar();
                 }
                 else{
-                    cout << "O valor " << valor << " NAO foi encontrado na pilha!\n";
+                    cout << "O valor " << valor.cod << " NAO foi encontrado na pilha!\n";
                     getchar();
                 }
                 getchar();
@@ -77,7 +78,7 @@ main(){
             case 6 :
                 system("cls");
                 cout<<"Digite o valor: ";
-                cin>>valor;
+                cin>>valor.cod;
                 cout<<"Digite a posicao: ";
                 cin>>posicao;
                 if(inserePosicaoL(lista, valor, posicao)){

@@ -187,8 +187,6 @@ void mostraDescritorL(Lista *lista){
     }else{
         cout<<"NULL";
     }
-
-    
 }
 
 
