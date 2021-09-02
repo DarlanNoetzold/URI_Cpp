@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include "lista_descritor.hpp""
+#include "lista_descritor.hpp"
 
 main(){
     setlocale(LC_ALL, "Portuguese");
@@ -22,7 +22,9 @@ main(){
         cout << "# 5 - Mostrar                    #" << endl;
         cout << "# 6 - Insere Pocicao             #" << endl;
         cout << "# 7 - Insere Inicio              #" << endl;
-        cout << "# 7 - Insere Fim                 #" << endl;
+        cout << "# 8 - Insere Fim                 #" << endl;
+        cout << "# 9 - Media                      #" << endl;
+        cout << "# 10 - Menor que a Media         #" << endl;
         cout << "##################################" << endl;
         cout << "Sua escolha: ";
         cin >> menu;
@@ -36,8 +38,15 @@ main(){
                 break;
             case 2 :
                 system("cls");
-                cout<<"Digite o valor: ";
+                cout<<"Digite o codigo: ";
                 cin>>valor.cod;
+                cout<<"Digite o nome: ";
+                cin>>valor.nome;
+                cout<<"Digite o idade: ";
+                cin>>valor.idade;
+                cout<<"Digite o salario: ";
+                cin>>valor.salario;
+                
                 if(insereInicioL(lista, valor)){
                     cout<<"valor inserido!"<<endl;
                     getchar();
@@ -59,7 +68,7 @@ main(){
 
             case 4 :
                 system("cls");
-                cout << "Digite o valor: ";
+                cout << "Digite o codigo: ";
                 cin >> valor.cod;
                 if (buscaL(lista, valor)){
                     cout << "O valor " << valor.cod << " foi encontrado na pilha!\n";
@@ -79,8 +88,14 @@ main(){
                 break;
             case 6 :
                 system("cls");
-                cout<<"Digite o valor: ";
+                cout<<"Digite o codigo: ";
                 cin>>valor.cod;
+                cout<<"Digite o nome: ";
+                cin>>valor.nome;
+                cout<<"Digite o idade: ";
+                cin>>valor.idade;
+                cout<<"Digite o salario: ";
+                cin>>valor.salario;
                 cout<<"Digite a posicao: ";
                 cin>>posicao;
                 if(inserePosicaoL(lista, valor, posicao)){
@@ -91,8 +106,14 @@ main(){
                 break;
             case 7 :
                 system("cls");
-                cout<<"Digite o valor: ";
+                cout<<"Digite o codigo: ";
                 cin>>valor.cod;
+                cout<<"Digite o nome: ";
+                cin>>valor.nome;
+                cout<<"Digite o idade: ";
+                cin>>valor.idade;
+                cout<<"Digite o salario: ";
+                cin>>valor.salario;
                 
                 if(insereInicioL(lista, valor)){
                     cout<<"valor inserido!"<<endl;
@@ -102,13 +123,30 @@ main(){
                 break;
             case 8 :
                 system("cls");
-                cout<<"Digite o valor: ";
+                cout<<"Digite o codigo: ";
                 cin>>valor.cod;
+                cout<<"Digite o nome: ";
+                cin>>valor.nome;
+                cout<<"Digite o idade: ";
+                cin>>valor.idade;
+                cout<<"Digite o salario: ";
+                cin>>valor.salario;
                 
                 if(insereFim(lista, valor)){
                     cout<<"valor inserido!"<<endl;
                     getchar();
                 }
+                getchar();
+                break;
+            case 9 :
+                system("cls");
+                cout<<"\nMedia: "<<mediaSalario(lista);
+                getchar();
+                break;
+            case 10 :
+                system("cls");
+                cout<<"\nMenores que a media: \n";
+                salMenorMedia(lista);
                 getchar();
                 break;
         }

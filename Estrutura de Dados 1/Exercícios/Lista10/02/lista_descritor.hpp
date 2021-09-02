@@ -6,6 +6,9 @@ using namespace std;
 
 struct Func{
     int cod;
+    string nome;
+    int idade;
+    double salario;
 };
 
 typedef Func DadoNoLista;
@@ -17,6 +20,9 @@ struct No
     No() // construtor
     {
         dado.cod = 0;
+        dado.nome = "";
+        dado.idade = 0;
+        dado.salario = 0.0;
         prox = nullptr;
     }
 };
@@ -51,7 +57,7 @@ struct Lista
 ostream& operator<<(ostream& os, const No *n)
 {
     /// cout << n
-    return os << n->dado.cod;
+    return os <<"\n--Informacoes:"<<"\nCodigo: "<< n->dado.cod << "\nIdade: "<<n->dado.idade<< "\nNome: "<<n->dado.nome<< "\nSalario: "<< n->dado.salario;
 }
 
 /// quanto cout receber uma struct Lista
@@ -187,7 +193,7 @@ bool inserePosicaoL(Lista *lista, DadoNoLista valor, int posicao)
 
 void mostraDescritorL(Lista *lista){
     if(lista->fim && lista->inicio){
-        cout<<"Descritor ["<<lista->tamanho<<", "<<lista->fim<<", "<<lista->inicio<<"]";
+        cout<<"\n\nDescritor ["<<lista->tamanho<<", "<<lista->fim->dado.cod<<", "<<lista->inicio->dado.cod<<"]\n\n";
     }else{
         cout<<"NULL";
     }
@@ -214,9 +220,40 @@ bool insereFim(Lista *lista, DadoNoLista valor){
 
     lista->fim = novo;
     
+    lista->tamanho++;
     return true;
 }
 
+double mediaSalario(Lista *lista){
+    No *anterior = NULL;
+    No *atual = lista->inicio;
+    double soma=0.0;
+    int p=0;
+    while (atual && atual != lista->fim){
+        soma += atual->dado.salario;
+        p++;
+
+        anterior = atual;
+        atual = atual->prox;
+
+    }
+
+    return soma/p;
+}
+
+void salMenorMedia(Lista *lista){
+    No *anterior = NULL;
+    No *atual = lista->inicio;
+
+    while (atual && atual != lista->fim){
+        if(mediaSalario(lista) > atual->dado.salario){
+            cout<<atual->dado.nome;
+        }
+        anterior = atual;
+        atual = atual->prox;
+
+    }
+}
 
 
 #endif // _HPP_LISTA_DESCRITOR
