@@ -193,6 +193,30 @@ void mostraDescritorL(Lista *lista){
     }
 }
 
+bool insereInicio(Lista *lista, DadoNoLista valor){
+    No *novo = new No();
+    novo->dado = valor;
+
+    novo->prox = lista->inicio;
+    lista->inicio = novo;
+
+    if (!lista->fim)
+        lista->fim = lista->inicio;
+
+    lista->tamanho++;
+    
+    return true;
+}
+
+bool insereFim(Lista *lista, DadoNoLista valor){
+    No *novo = new No();
+    novo->dado = valor;
+
+    lista->fim = novo;
+    
+    return true;
+}
+
 
 
 #endif // _HPP_LISTA_DESCRITOR

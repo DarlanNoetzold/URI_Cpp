@@ -21,6 +21,8 @@ main(){
         cout << "# 4 - Consultar                  #" << endl;
         cout << "# 5 - Mostrar                    #" << endl;
         cout << "# 6 - Insere Pocicao             #" << endl;
+        cout << "# 7 - Insere Inicio              #" << endl;
+        cout << "# 7 - Insere Fim                 #" << endl;
         cout << "##################################" << endl;
         cout << "Sua escolha: ";
         cin >> menu;
@@ -82,6 +84,28 @@ main(){
                 cout<<"Digite a posicao: ";
                 cin>>posicao;
                 if(inserePosicaoL(lista, valor, posicao)){
+                    cout<<"valor inserido!"<<endl;
+                    getchar();
+                }
+                getchar();
+                break;
+            case 7 :
+                system("cls");
+                cout<<"Digite o valor: ";
+                cin>>valor.cod;
+                
+                if(insereInicioL(lista, valor)){
+                    cout<<"valor inserido!"<<endl;
+                    getchar();
+                }
+                getchar();
+                break;
+            case 8 :
+                system("cls");
+                cout<<"Digite o valor: ";
+                cin>>valor.cod;
+                
+                if(insereFim(lista, valor)){
                     cout<<"valor inserido!"<<endl;
                     getchar();
                 }
