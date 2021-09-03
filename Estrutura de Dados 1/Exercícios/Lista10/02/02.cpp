@@ -25,6 +25,7 @@ main(){
         cout << "# 8 - Insere Fim                 #" << endl;
         cout << "# 9 - Media                      #" << endl;
         cout << "# 10 - Menor que a Media         #" << endl;
+        cout << "# 11 - Ordena                    #" << endl;
         cout << "##################################" << endl;
         cout << "Sua escolha: ";
         cin >> menu;

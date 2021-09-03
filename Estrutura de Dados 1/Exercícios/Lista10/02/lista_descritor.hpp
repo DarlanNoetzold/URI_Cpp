@@ -266,6 +266,24 @@ void salMenorMedia(Lista *lista){
     }
 }
 
+bool precisaTrocar(){
+    return true;
+}
+
+void ordenaL(Lista *lista){
+    No *n = lista->inicio;
+    bool trocou;
+    do{
+        trocou = false;
+        while(n){
+            if(precisaTrocar()){
+
+                trocou=true;
+            }
+        }
+    }while(trocou);
+}
+
 
 #endif // _HPP_LISTA_DESCRITOR
 
