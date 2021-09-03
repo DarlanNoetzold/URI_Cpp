@@ -215,39 +215,50 @@ bool insereInicio(Lista *lista, DadoNoLista valor){
 }
 
 bool insereFim(Lista *lista, DadoNoLista valor){
+    No *anterior = NULL;
+    No *atual = lista->inicio;
+    int p = 0;
+    while (atual)
+    {
+        anterior = atual;
+        atual = atual->prox;
+        p++;
+    }
+
     No *novo = new No();
     novo->dado = valor;
+    novo->prox = anterior->prox;
+    anterior->prox = novo;
+    if (!novo->prox) //o n� adicionado est� no final da lista?
+        lista->fim = novo;
 
-    lista->fim = novo;
-    
     lista->tamanho++;
+
     return true;
 }
 
 double mediaSalario(Lista *lista){
-    No *anterior = NULL;
     No *atual = lista->inicio;
     double soma=0.0;
     int p=0;
-    while (atual && atual != lista->fim){
+    while (atual){
         soma += atual->dado.salario;
         p++;
 
-        anterior = atual;
         atual = atual->prox;
 
     }
 
-    return soma/p;
+    return (soma/p);
 }
 
 void salMenorMedia(Lista *lista){
     No *anterior = NULL;
     No *atual = lista->inicio;
 
-    while (atual && atual != lista->fim){
+    while (atual){
         if(mediaSalario(lista) > atual->dado.salario){
-            cout<<atual->dado.nome;
+            cout<<atual->dado.nome<<", ";
         }
         anterior = atual;
         atual = atual->prox;
