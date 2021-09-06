@@ -266,20 +266,32 @@ void salMenorMedia(Lista *lista){
     }
 }
 
-bool precisaTrocar(){
-    return true;
+bool precisaTrocar(string nome, string nomeProx){
+    if(strcmpi(nome.c_str(), nomeProx.c_str()) == 0){
+        return false;
+
+    }else if(strcmpi(nome.c_str(), nomeProx.c_str()) > 0){
+        return false;
+        
+    }else if(strcmpi(nome.c_str(), nomeProx.c_str()) < 0){
+        return true;
+    }
 }
 
 void ordenaL(Lista *lista){
     No *n = lista->inicio;
     bool trocou;
     do{
+        n = lista->inicio;
         trocou = false;
         while(n){
-            if(precisaTrocar()){
-
+            if(precisaTrocar(n->dado.nome, n->prox->dado.nome)){
+                Func aux = n->dado;
+                n->dado = n->prox->dado;
+                n->prox->dado = aux;
                 trocou=true;
             }
+            n = n->prox;
         }
     }while(trocou);
 }

@@ -150,6 +150,12 @@ main(){
                 salMenorMedia(lista);
                 getchar();
                 break;
+            case 11 :
+                system("cls");
+                cout<<"\nOrdenado! \n";
+                ordenaL(lista);
+                getchar();
+                break;
         }
     }while(menu != 0);
     
