@@ -152,8 +152,12 @@ main(){
                 break;
             case 11 :
                 system("cls");
-                cout<<"\nOrdenado! \n";
                 ordenaL(lista);
+                cout<<"\nOrdenado! \n";
+                getchar();
+                break;
+            default:
+                cout<<"Nao temos essa opcao!";
                 getchar();
                 break;
         }
