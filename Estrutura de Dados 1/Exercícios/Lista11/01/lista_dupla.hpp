@@ -144,6 +144,29 @@ bool insereInicioL(Lista *lista, DadoNoLista valor)
     return true;
 }
 
+bool insereFinalL(Lista *lista, DadoNoLista valor)
+{
+
+    No *novo = new No();
+    if (!novo)
+        return false;
+
+    novo->dado = valor;
+    novo->ant = lista->fim; //Se o novo n� ser� adicionado no in�cio da lista, o ponteiro *ant do primeiro n� sempre � nulo
+    novo->prox = nullptr;
+
+    if (!lista->fim) //lista vazia?
+        lista->inicio = novo;
+    else
+        lista->fim->prox = novo;
+
+
+    lista->fim = novo;
+    lista->tamanho++;
+
+    return true;
+}
+
 No* buscaL(Lista *lista, int valor)
 {
     No *n = lista->inicio;

@@ -87,8 +87,22 @@ void mostrarInversoL(Lista *lista)
     cout << "}" << endl;
 }
 
+void mostrarL(Lista *lista)
+{
+    No *n = lista->inicio;
+    cout << "L[" << lista->tamanho << "]:{";
+    while(n)
+    {
+        cout << n;
+        n = n->prox;
 
-///insere no início da lista
+        if(n)
+            cout << ", ";
+    }
+    cout << "}" << endl;
+}
+
+///insere no inï¿½cio da lista
 bool insereInicioL(Lista *lista, DadoNoLista valor)
 {
 
@@ -97,7 +111,7 @@ bool insereInicioL(Lista *lista, DadoNoLista valor)
         return false;
 
     novo->dado = valor;
-    novo->ant = nullptr; //Se o novo nó será adicionado no início da lista, o ponteiro *ant do primeiro nó sempre é nulo
+    novo->ant = nullptr; //Se o novo nï¿½ serï¿½ adicionado no inï¿½cio da lista, o ponteiro *ant do primeiro nï¿½ sempre ï¿½ nulo
     novo->prox = lista->inicio;
 
     if (!lista->fim) //lista vazia?
@@ -107,6 +121,30 @@ bool insereInicioL(Lista *lista, DadoNoLista valor)
 
 
     lista->inicio = novo;
+    lista->tamanho++;
+
+    return true;
+}
+
+
+bool insereFinalL(Lista *lista, DadoNoLista valor)
+{
+
+    No *novo = new No();
+    if (!novo)
+        return false;
+
+    novo->dado = valor;
+    novo->ant = lista->fim; //Se o novo nï¿½ serï¿½ adicionado no inï¿½cio da lista, o ponteiro *ant do primeiro nï¿½ sempre ï¿½ nulo
+    novo->prox = nullptr;
+
+    if (!lista->fim) //lista vazia?
+        lista->inicio = novo;
+    else
+        lista->fim->prox = novo;
+
+
+    lista->fim = novo;
     lista->tamanho++;
 
     return true;
@@ -131,7 +169,7 @@ bool removerNoL(Lista *lista, No *no)
     if(!no || !lista || vaziaL(lista))
         return false;
 
-    if (!no->ant) /// se anterior é igual a NULL, o elemento a ser excluído está no início da lista
+    if (!no->ant) /// se anterior ï¿½ igual a NULL, o elemento a ser excluï¿½do estï¿½ no inï¿½cio da lista
     {
         lista->inicio = no->prox;
         if (!lista->inicio) ///lista ficou vazia ?
@@ -139,17 +177,17 @@ bool removerNoL(Lista *lista, No *no)
         else
             lista->inicio->ant = nullptr;
 
-    }else{ /// elemento está no meio ou no fim
+    }else{ /// elemento estï¿½ no meio ou no fim
 
         no->ant->prox = no->prox;
-        if (!no->prox)/// se for retirado último da lista
+        if (!no->prox)/// se for retirado ï¿½ltimo da lista
             lista->fim = no->ant;
         else
             no->prox->ant = no->ant;
 
     }
 
-    /// libera a memória do elemento
+    /// libera a memï¿½ria do elemento
     lista->tamanho--;
     delete(no);
     return true;
@@ -167,6 +205,29 @@ bool removeL(Lista *lista, DadoNoLista valor)
     return true;
 }
 
+bool removeInicioL(Lista *lista)
+{
+    No* no = buscaL(lista, lista->inicio->dado);
+
+    if(!no)
+        return false;
+
+    removerNoL(lista, no);
+
+    return true;
+}
+
+bool removeFimL(Lista *lista)
+{
+    No* no = buscaL(lista, lista->fim->dado);
+
+    if(!no)
+        return false;
+
+    removerNoL(lista, no);
+
+    return true;
+}
 
 
 

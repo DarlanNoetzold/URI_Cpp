@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include ""
+#include "lista_dupla.hpp"
 
 main(){
     setlocale(LC_ALL, "Portuguese");
@@ -30,30 +30,27 @@ main(){
                 cout << "PROGRAMA FINALIZADO";
                 getchar();
                 break;
-            case 1 :
-                system("cls");
-                
-                getchar();
-                break;
             case 2 :
                 system("cls");
-                
+                cout<<"Dite o valor: ";
+                cin>>valor;
+                insereFinalL(lista, valor);
                 getchar();
                 break;
             case 3 :
                 system("cls");
-                
+                removeInicioL(lista);
                 getchar();
                 break;
 
             case 4 :
                 system("cls");
-                
+                removeFimL(lista);
                 getchar();
                 break;
             case 5 :
                 system("cls");
-                
+                mostrarL(lista);
                 getchar();
                 break;
         }
