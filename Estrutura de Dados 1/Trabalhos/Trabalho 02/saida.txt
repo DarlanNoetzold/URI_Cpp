@@ -1,0 +1,8 @@
+O usuário Joao (6) foi adicionado na rede.
+O usuário Pedro (4) foi adicionado na rede.
+O usuário Paulo (3) foi adicionado na rede.
+O usuário Maria (7) foi adicionado na rede.
+O usuário Francisco (30) foi adicionado na rede.
+Erro ao adicionar o usuário Mariana (30). O ID 30 já existe!
+Usuários da rede: Paulo (3) Pedro (4) Joao (6) Maria (7) Francisco (30) 
+Usuários da rede: Paulo (3) Pedro (4) Joao (6) Maria (7) Francisco (30) 

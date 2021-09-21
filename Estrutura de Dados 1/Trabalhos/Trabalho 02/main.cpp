@@ -5,6 +5,23 @@ using namespace std;
 #include <fstream>
 #include "lista.hpp"
 
+
+void addUsuario(Lista *listaUsuariosRede, int ID, int idade, int sexo, string nome){
+    Usuario *novoUsr = new Usuario(ID, idade, sexo, nome);
+
+    ofstream escreve("saida.txt", ios::app);
+    if (!buscaL(listaUsuariosRede, novoUsr))
+    {
+        escreve << "O usuário " << nome << " (" << ID << ") foi adicionado na rede." << endl;
+        insereOrdenado(listaUsuariosRede, novoUsr);
+    }
+    else
+    {
+        escreve << "Erro ao adicionar o usuário " << nome << " (" << ID << "). O ID " << ID << " já existe!" << endl;
+    }
+    escreve.close();
+}
+
 void addAmigo(Lista * listaUsuariosRede, int ID1, int ID2)
 {
     //buscar usu�rio 1, passando por par�metro (listaUsuariosRede, ID1)
@@ -64,22 +81,11 @@ int main(void){
             int sexo;
             string nome;
 
-            ler >> ID;            
+            ler >> ID;
             ler >> idade;
             ler >> sexo;
             ler >> nome;
-
-            Usuario *novoUsr = new Usuario(ID, idade, sexo, nome);
-
-            ofstream escreve("saida.txt",ios::app);
-            if(!buscaL(listaUsuariosRede, novoUsr)){
-                escreve<<"O usuário " <<nome<<" ("<<ID<<") foi adicionado na rede."<<endl;
-                insereOrdenado(listaUsuariosRede, novoUsr);
-            }else{
-                escreve<<"Erro ao adicionar o usuário "<<nome<<" ("<<ID<<"). O ID "<<ID<<" já existe!"<<endl;
-            }
-            escreve.close();
-
+            addUsuario(listaUsuariosRede,ID, idade, sexo, nome);
             
         }else if(op == "imprimirUsuarios"){
             escreveLista(listaUsuariosRede);
