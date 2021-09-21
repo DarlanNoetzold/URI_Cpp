@@ -1,17 +1,16 @@
 #ifndef _HPP_LISTA
 #define _HPP_LISTA
 
-
 #include <string>
 #include <iostream>
 
 
-//pré-declaração da struct Usuario
+//prï¿½-declaraï¿½ï¿½o da struct Usuario
 struct Usuario;
 
 struct No
 {
-    Usuario *dado; //referencia do usuário, evita duplicar dados entre as lista de amigos e a lista de usuários da rede
+    Usuario *dado; //referencia do usuï¿½rio, evita duplicar dados entre as lista de amigos e a lista de usuï¿½rios da rede
     No *prox;
 
     No()
@@ -41,7 +40,7 @@ struct Lista
             No *aux = n;
             n = n->prox;
 
-            delete aux; //apaga apenas o nó, "Usuario *dado" ainda permanece alocado
+            delete aux; //apaga apenas o nï¿½, "Usuario *dado" ainda permanece alocado
         }
         inicio = nullptr;
         fim = nullptr;
@@ -49,7 +48,7 @@ struct Lista
     }
 };
 
-//alocar memória para criar um usuário: Usuario* usr = new  Usuario(1, 20, 0, "Joao");"
+//alocar memï¿½ria para criar um usuï¿½rio: Usuario* usr = new  Usuario(1, 20, 0, "Joao");"
 struct Usuario
 {
     int ID;
@@ -92,6 +91,60 @@ struct Usuario
     }
 };
 
+
+
+void escreveLista(Lista *lista){
+    No *n = lista->inicio;
+
+    ofstream escreve("saida.txt",ios::app);
+    escreve<<"UsuÃ¡rios da rede: ";
+    
+    while(n){
+        escreve<<n->dado->nome<<" ("<<n->dado->ID<<") ";
+        n = n->prox;
+    }
+
+    escreve<<endl;
+    escreve.close();
+}
+
+void insereOrdenado(Lista *lista, Usuario *valor){
+    No *anterior = nullptr;
+    No *atual = lista->inicio;
+    while (atual && atual->dado->ID <= valor->ID)
+    {
+        anterior = atual;
+        atual = atual->prox;
+    }
+
+    No *novo = new No();
+    novo->dado = valor;
+    if (!anterior) {
+        novo->prox = lista->inicio;
+        lista->inicio = novo;
+
+        if (!lista->fim)
+            lista->fim = lista->inicio;
+    }
+    else{
+        novo->prox = anterior->prox;
+        anterior->prox = novo;
+    }
+}
+
+No* buscaL(Lista *lista, Usuario *valor)
+{
+    No *n = lista->inicio;
+    while (n)
+    {
+        if (n->dado->ID == valor->ID)
+            return n;
+
+        n = n->prox;
+    }
+
+    return nullptr;
+}
 
 #endif // _HPP_LISTA
 

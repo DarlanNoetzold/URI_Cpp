@@ -177,7 +177,7 @@ bool igual(No **lista1, No **lista2){
 }
 
 void insereOrdenado(No **lista, int valor){
-    No *anterior = NULL;
+    No *anterior = nullptr;
     No *atual = *lista;
     while (atual && atual->dado >= valor)
     {

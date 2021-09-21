@@ -49,23 +49,42 @@ int main(void){
 
     setlocale(LC_ALL, "Portuguese");
 
-    Usuario *novoUsr = nullptr;
     Lista *listaUsuariosRede = new Lista();
 
     int aux=0;
-    char partes[30];
+    string op;
     ifstream ler("entrada.txt", ios::in);
+    
     while (!ler.fail()){
-        ler.getline(partes, 30, ' ');
+        ler >> op;
+        cout<<op;
+        if(op == "addUsuario"){
+            int ID;
+            int idade;
+            int sexo;
+            string nome;
 
+            ler >> ID;            
+            ler >> idade;
+            ler >> sexo;
+            ler >> nome;
 
+            Usuario *novoUsr = new Usuario(ID, idade, sexo, nome);
+
+            ofstream escreve("saida.txt",ios::app);
+            if(!buscaL(listaUsuariosRede, novoUsr)){
+                escreve<<"O usuário " <<nome<<" ("<<ID<<") foi adicionado na rede."<<endl;
+                insereOrdenado(listaUsuariosRede, novoUsr);
+            }else{
+                escreve<<"Erro ao adicionar o usuário "<<nome<<" ("<<ID<<"). O ID "<<ID<<" já existe!"<<endl;
+            }
+            escreve.close();
+
+            
+        }else if(op == "imprimirUsuarios"){
+            escreveLista(listaUsuariosRede);
+        }
     }
-    //Adicionando usu�rios
-    novoUsr = new Usuario(4, 20, 0, "Jo�o"); //id, idade, sexo, nome
-    //insereL(listaUsuariosRede, novoUsr); //insere na lista o ponteiro para o usu�rio
-
-    novoUsr = new Usuario(10, 30, 1, "Fernanda"); //id, idade, sexo, nome
-    //insereL(listaUsuariosRede, novoUsr); //insere na lista o ponteiro para o usu�rio
 
 
     //aidiconando amigo

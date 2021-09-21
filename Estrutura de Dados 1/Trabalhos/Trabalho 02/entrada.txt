@@ -1,0 +1,8 @@
+addUsuario 6 40 0 Joao
+addUsuario 4 25 0 Pedro
+addUsuario 3 10 0 Paulo
+addUsuario 7 30 1 Maria
+addUsuario 30 50 0 Francisco
+addUsuario 30 20 1 Mariana
+
+imprimirUsuarios
