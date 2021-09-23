@@ -1,8 +1,21 @@
+
 O usuário Joao (6) foi adicionado na rede.
 O usuário Pedro (4) foi adicionado na rede.
 O usuário Paulo (3) foi adicionado na rede.
 O usuário Maria (7) foi adicionado na rede.
 O usuário Francisco (30) foi adicionado na rede.
 Erro ao adicionar o usuário Mariana (30). O ID 30 já existe!
+Os usuários Joao (6) e Pedro (4) se tornaram amigos.
+Erro ao criar amizade dos usuários com IDs 6 e 4 !
+Os usuários Joao (6) e Paulo (3) se tornaram amigos.
+Os usuários Maria (7) e Joao (6) se tornaram amigos.
+Os usuários Maria (7) e Paulo (3) se tornaram amigos.
+Os usuários Paulo (3) e Pedro (4) se tornaram amigos.
+Erro ao criar amizade dos usuários com IDs 8 e 9 !
 Usuários da rede: Paulo (3) Pedro (4) Joao (6) Maria (7) Francisco (30) 
-Usuários da rede: Paulo (3) Pedro (4) Joao (6) Maria (7) Francisco (30) 
+Amigos de Paulo (3): Pedro (4) Joao (6) Maria (7) 
+Amigos de Pedro (4): Paulo (3) Joao (6) 
+Amigos de Joao (6): Paulo (3) Pedro (4) Maria (7) 
+Amigos de Maria (7): Paulo (3) Joao (6) 
+Amigos de Francisco (30): 
+Erro ao imprimir amigos do usuário com ID 9. O usuário não existe!

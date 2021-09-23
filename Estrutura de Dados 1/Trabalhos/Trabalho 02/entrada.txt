@@ -5,4 +5,19 @@ addUsuario 7 30 1 Maria
 addUsuario 30 50 0 Francisco
 addUsuario 30 20 1 Mariana
 
+addAmigo 6 4
+addAmigo 6 4
+addAmigo 6 3
+addAmigo 7 6
+addAmigo 7 3
+addAmigo 3 4
+addAmigo 8 9
+
 imprimirUsuarios
+
+imprimirAmigos 3
+imprimirAmigos 4
+imprimirAmigos 6
+imprimirAmigos 7
+imprimirAmigos 30
+imprimirAmigos 9 #Erro, o usuário com ID 9 não existe

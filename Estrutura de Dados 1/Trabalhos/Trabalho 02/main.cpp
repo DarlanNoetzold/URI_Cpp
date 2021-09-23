@@ -10,7 +10,7 @@ void addUsuario(Lista *listaUsuariosRede, int ID, int idade, int sexo, string no
     Usuario *novoUsr = new Usuario(ID, idade, sexo, nome);
 
     ofstream escreve("saida.txt", ios::app);
-    if (!buscaL(listaUsuariosRede, novoUsr))
+    if (!buscaL(listaUsuariosRede, novoUsr->ID))
     {
         escreve << "O usuário " << nome << " (" << ID << ") foi adicionado na rede." << endl;
         insereOrdenado(listaUsuariosRede, novoUsr);
@@ -22,15 +22,31 @@ void addUsuario(Lista *listaUsuariosRede, int ID, int idade, int sexo, string no
     escreve.close();
 }
 
-void addAmigo(Lista * listaUsuariosRede, int ID1, int ID2)
-{
-    //buscar usu�rio 1, passando por par�metro (listaUsuariosRede, ID1)
+void addAmigo(Lista *listaUsuariosRede, int ID1, int ID2){
+    ofstream escreve("saida.txt", ios::app);
 
-    //buscar usu�rio 2, passando por par�metro (listaUsuariosRede, ID2)
+    if(ID1 == ID2){
 
+    }
 
-    //insereL(usuario1->amigos, usu�rio2);
-    //insereL(usuario2->amigos, usu�rio1);
+    if(buscaL(listaUsuariosRede, ID2) && buscaL(listaUsuariosRede, ID1)){
+        No *usuario2 = buscaL(listaUsuariosRede, ID2);
+        No *usuario1 = buscaL(listaUsuariosRede, ID1);
+        
+        if(buscaL(usuario1->dado->amigos, ID2) || buscaL(usuario2->dado->amigos, ID1)){
+            escreve<<"Erro ao criar amizade dos usuários com IDs "<< ID1 <<" e "<<ID2<<" !"<<endl;
+            return;
+        }
+
+        if(!insereOrdenado(usuario1->dado->amigos, usuario2->dado) || !insereOrdenado(usuario2->dado->amigos, usuario1->dado)){
+            escreve<<"Erro ao criar amizade dos usuários com IDs "<< ID1 <<" e "<<ID2<<" !"<<endl;
+        }else{
+            cout<<"\n"<<usuario1->dado->nome;
+            escreve << "Os usuários " << usuario1->dado->nome << " (" << usuario1->dado->ID << ") e " << usuario2->dado->nome << " (" << usuario2->dado->ID << ") se tornaram amigos."<<endl;
+        }
+    }else{
+        escreve<<"Erro ao criar amizade dos usuários com IDs "<< ID1 <<" e "<<ID2<<" !"<<endl;
+    }        
 }
 
 
@@ -74,7 +90,6 @@ int main(void){
     
     while (!ler.fail()){
         ler >> op;
-        cout<<op;
         if(op == "addUsuario"){
             int ID;
             int idade;
@@ -89,22 +104,23 @@ int main(void){
             
         }else if(op == "imprimirUsuarios"){
             escreveLista(listaUsuariosRede);
+
+        }else if(op == "addAmigo"){
+            int ID1;
+            int ID2;
+            ler >> ID1;
+            ler >> ID2;
+            addAmigo(listaUsuariosRede, ID1, ID2);
+
+        }else if(op == "imprimirAmigos"){
+            int ID;
+            ler>> ID;
+            escreveAmigos(listaUsuariosRede, ID);
         }
     }
 
 
-    //aidiconando amigo
-    addAmigo(listaUsuariosRede, 4, 10);
 
-    //removendo amigo
-    removerAmigo(listaUsuariosRede,  4, 10);
-
-
-    //removendo usu�rio da rede
-    removerUsuarioRede(listaUsuariosRede, 10);
-
-
-    removerTodosUsariosRede(listaUsuariosRede);
 
     delete listaUsuariosRede;
     return EXIT_SUCCESS;

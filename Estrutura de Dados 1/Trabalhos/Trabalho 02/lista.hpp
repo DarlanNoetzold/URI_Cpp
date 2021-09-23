@@ -91,7 +91,19 @@ struct Usuario
     }
 };
 
+No* buscaL(Lista *lista, int valor)
+{
+    No *n = lista->inicio;
+    while (n)
+    {
+        if (n->dado->ID == valor)
+            return n;
 
+        n = n->prox;
+    }
+
+    return nullptr;
+}
 
 void escreveLista(Lista *lista){
     No *n = lista->inicio;
@@ -108,9 +120,30 @@ void escreveLista(Lista *lista){
     escreve.close();
 }
 
-void insereOrdenado(Lista *lista, Usuario *valor){
+void escreveAmigos(Lista *lista, int ID){
+    ofstream escreve("saida.txt",ios::app);
+
+    if(!buscaL(lista, ID)){
+        escreve<<"Erro ao imprimir amigos do usuário com ID "<<ID<<". O usuário não existe!"<<endl;
+    }
+
+    No *usuario = buscaL(lista, ID);
+
+    escreve<<"Amigos de "<<usuario->dado->nome<<" ("<<usuario->dado->ID<<"): ";
+    No *n = usuario->dado->amigos->inicio;
+    while(n){
+        escreve<<n->dado->nome<<" ("<<n->dado->ID<<") ";
+        n = n->prox;
+    }
+
+    escreve<<endl;
+    escreve.close();
+}
+
+bool insereOrdenado(Lista *lista, Usuario *valor){
     No *anterior = nullptr;
     No *atual = lista->inicio;
+    
     while (atual && atual->dado->ID <= valor->ID)
     {
         anterior = atual;
@@ -118,6 +151,8 @@ void insereOrdenado(Lista *lista, Usuario *valor){
     }
 
     No *novo = new No();
+    if (!novo)
+        return false;
     novo->dado = valor;
     if (!anterior) {
         novo->prox = lista->inicio;
@@ -130,20 +165,22 @@ void insereOrdenado(Lista *lista, Usuario *valor){
         novo->prox = anterior->prox;
         anterior->prox = novo;
     }
+
+    return true;
 }
 
-No* buscaL(Lista *lista, Usuario *valor)
-{
-    No *n = lista->inicio;
-    while (n)
-    {
-        if (n->dado->ID == valor->ID)
-            return n;
+bool insereL(Lista *lista, No *valor){
+    No *novo = new No();
+    if (!novo)
+        return false;
 
-        n = n->prox;
-    }
-
-    return nullptr;
+    novo->dado = valor->dado;
+    novo->prox = lista->inicio;
+    lista->inicio = novo;
+    lista->tamanho++;
+    if (!lista->fim)
+        lista->fim = lista->inicio;
+    return true;
 }
 
 #endif // _HPP_LISTA
