@@ -1,4 +1,3 @@
-
 O usuário Joao (6) foi adicionado na rede.
 O usuário Pedro (4) foi adicionado na rede.
 O usuário Paulo (3) foi adicionado na rede.
@@ -19,3 +18,17 @@ Amigos de Joao (6): Paulo (3) Pedro (4) Maria (7)
 Amigos de Maria (7): Paulo (3) Joao (6) 
 Amigos de Francisco (30): 
 Erro ao imprimir amigos do usuário com ID 9. O usuário não existe!
+Media de idade dos amigos de Joao (6): 21.6667
+Media de idade dos amigos de Pedro (4): 25
+Media de idade dos amigos de Paulo (3): 31.6667
+Media de idade dos amigos de Maria (7): 25
+Media de idade dos amigos de Francisco (30): 
+Erro ao imprimir a média de idade dos amigos do usuário com ID 9. O usuário não existe!
+Amigos em comum entre Joao (6) e Paulo (3) (todos os sexos): Pedro (4) Maria (7) 
+Amigos em comum entre Joao (6) e Paulo (3) (sexo masculino): Pedro (4) 
+Amigos em comum entre Joao (6) e Paulo (3) (sexo feminino): Maria (7) 
+Amigos em comum entre Joao (6) e Paulo (3) (todos os sexos): Pedro (4) Maria (7) 
+Amigos em comum entre Joao (6) e Paulo (3) (sexo masculino): Pedro (4) 
+Amigos em comum entre Joao (6) e Paulo (3) (sexo feminino): Maria (7) 
+Erro ao imprimir amigos em comum dos usuários com IDs 8 e 9 !
+Erro ao imprimir amigos em comum dos usuários com IDs 8 e 9 !

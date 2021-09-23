@@ -125,6 +125,7 @@ void escreveAmigos(Lista *lista, int ID){
 
     if(!buscaL(lista, ID)){
         escreve<<"Erro ao imprimir amigos do usuário com ID "<<ID<<". O usuário não existe!"<<endl;
+        return;
     }
 
     No *usuario = buscaL(lista, ID);
@@ -183,24 +184,115 @@ bool insereL(Lista *lista, No *valor){
     return true;
 }
 
-bool imprimirMediaIdadeAmigos(Lista *lista, int ID){
+void imprimirMediaIdadeAmigos(Lista *lista, int ID){
     ofstream escreve("saida.txt",ios::app);
 
     if(!buscaL(lista, ID)){
         escreve<<"Erro ao imprimir a média de idade dos amigos do usuário com ID "<<ID<<". O usuário não existe!"<<endl;
+        return;
     }
 
     No *usuario = buscaL(lista, ID);
 
-    escreve<<"Média de idade dos amigos de "<<usuario->dado->nome<<" ("<<usuario->dado->ID<<"): ";
+    escreve<<"Media de idade dos amigos de "<<usuario->dado->nome<<" ("<<usuario->dado->ID<<"): ";
     No *n = usuario->dado->amigos->inicio;
-    double soma;
+    double soma=0.0;
+    double cont=0.0;
     while(n){
-        soma += usuario->dado->idade;
+        cont++;
+        soma += n->dado->idade;
         n = n->prox;
     }
-    escreve<<soma/usuario->dado->amigos->tamanho;
+    if(cont >0){
+        double media = soma/cont;
+        escreve<<media;
+    }
     escreve<<endl;
+    escreve.close();
+}
+
+void imprimirAmigosEmComum(Lista *lista, int ID1, int ID2, int sexo){
+    ofstream escreve("saida.txt", ios::app);
+    if(ID1 == ID2){
+        escreve<<"Erro ao imprimir amigos em comum dos usuários com IDs "<< ID1 <<" e "<<ID2<<" !"<<endl;
+        return;
+    }
+
+    if(sexo == 0){
+        if(buscaL(lista, ID2) && buscaL(lista, ID1)){
+            No *usuario2 = buscaL(lista, ID2);
+            No *usuario1 = buscaL(lista, ID1);
+            escreve<<"Amigos em comum entre "<<usuario1->dado->nome<<" ("<<usuario1->dado->ID<<") e "<<usuario2->dado->nome<<" ("<<usuario2->dado->ID<<") (sexo masculino): ";
+
+            No *n1 = usuario1->dado->amigos->inicio;
+            
+            while(n1){
+                No *n2 = usuario2->dado->amigos->inicio;
+                while(n2){
+                    if(n1->dado->ID == n2->dado->ID && n1->dado->sexo == 0 && n2->dado->sexo == 0){
+                        escreve<<n1->dado->nome<<" ("<<n1->dado->ID<<") ";
+                    }
+                    n2 = n2->prox;
+                }
+                n1 = n1->prox;
+            }
+            escreve<<endl;
+        }else{
+            escreve<<"Erro ao imprimir amigos em comum dos usuários com IDs "<< ID1 <<" e "<<ID2<<" !"<<endl;
+            return;
+        }
+    }else if(sexo == 1){
+        if(buscaL(lista, ID2) && buscaL(lista, ID1)){
+            No *usuario2 = buscaL(lista, ID2);
+            No *usuario1 = buscaL(lista, ID1);
+            escreve<<"Amigos em comum entre "<<usuario1->dado->nome<<" ("<<usuario1->dado->ID<<") e "<<usuario2->dado->nome<<" ("<<usuario2->dado->ID<<") (sexo feminino): ";
+
+            No *n1 = usuario1->dado->amigos->inicio;
+            
+            while(n1){
+                No *n2 = usuario2->dado->amigos->inicio;
+                while(n2){
+                    if(n1->dado->ID == n2->dado->ID && n1->dado->sexo == 1 && n2->dado->sexo == 1){
+                        escreve<<n1->dado->nome<<" ("<<n1->dado->ID<<") ";
+                    }
+                    n2 = n2->prox;
+                }
+                n1 = n1->prox;
+            }
+            escreve<<endl;
+        }else{
+            escreve<<"Erro ao imprimir amigos em comum dos usuários com IDs "<< ID1 <<" e "<<ID2<<" !"<<endl;
+            return;
+        }
+    }else if(sexo == 2){
+        if(buscaL(lista, ID2) && buscaL(lista, ID1)){
+            No *usuario2 = buscaL(lista, ID2);
+            No *usuario1 = buscaL(lista, ID1);
+            escreve<<"Amigos em comum entre "<<usuario1->dado->nome<<" ("<<usuario1->dado->ID<<") e "<<usuario2->dado->nome<<" ("<<usuario2->dado->ID<<") (todos os sexos): ";
+
+            No *n1 = usuario1->dado->amigos->inicio;
+            
+            while(n1){
+                No *n2 = usuario2->dado->amigos->inicio;
+                while(n2){
+                    if(n1->dado->ID == n2->dado->ID){
+                        escreve<<n1->dado->nome<<" ("<<n1->dado->ID<<") ";
+                    }
+                    cout<<"teste "<<n1->dado->ID<<" "<< n2->dado->ID<<endl;
+                    n2 = n2->prox;
+                }
+                n1 = n1->prox;
+            }
+            escreve<<endl;
+        }else{
+            escreve<<"Erro ao imprimir amigos em comum dos usuários com IDs "<< ID1 <<" e "<<ID2<<" !"<<endl;
+            return;
+        }
+    }else{
+        escreve<<"Erro ao imprimir amigos em comum dos usuários com IDs "<< ID1 <<" e "<<ID2<<" !"<<endl;
+        return;
+    }
+
     escreve.close();
 }
 

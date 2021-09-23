@@ -26,7 +26,8 @@ void addAmigo(Lista *listaUsuariosRede, int ID1, int ID2){
     ofstream escreve("saida.txt", ios::app);
 
     if(ID1 == ID2){
-
+        escreve<<"Erro ao criar amizade dos usuários com IDs "<< ID1 <<" e "<<ID2<<" !"<<endl;
+        return;
     }
 
     if(buscaL(listaUsuariosRede, ID2) && buscaL(listaUsuariosRede, ID1)){
@@ -120,8 +121,17 @@ int main(void){
         }else if(op == "imprimirMediaIdadeAmigos"){
             int ID;
             ler>> ID;
-            escreveAmigos(listaUsuariosRede, ID);
             
+            imprimirMediaIdadeAmigos(listaUsuariosRede, ID);
+        }else if(op =="imprimirAmigosEmComum"){
+            int ID1;
+            int ID2;
+            int sexo;
+            ler >> ID1;
+            ler >> ID2;
+            ler >> sexo;
+
+            imprimirAmigosEmComum(listaUsuariosRede ,ID1, ID2, sexo);
         }
     }
 

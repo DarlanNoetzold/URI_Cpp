@@ -20,4 +20,19 @@ imprimirAmigos 4
 imprimirAmigos 6
 imprimirAmigos 7
 imprimirAmigos 30
-imprimirAmigos 9 #Erro, o usuário com ID 9 não existe
+imprimirAmigos 9
+
+imprimirMediaIdadeAmigos 6
+imprimirMediaIdadeAmigos 4
+imprimirMediaIdadeAmigos 3
+imprimirMediaIdadeAmigos 7
+imprimirMediaIdadeAmigos 30
+imprimirMediaIdadeAmigos 9
+
+imprimirAmigosEmComum 6 3 2
+imprimirAmigosEmComum 6 3 0
+imprimirAmigosEmComum 6 3 1
+imprimirAmigosEmComum 6 3 2
+imprimirAmigosEmComum 6 3 0
+imprimirAmigosEmComum 6 3 1
+imprimirAmigosEmComum 8 9 0
