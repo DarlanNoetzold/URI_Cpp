@@ -116,6 +116,12 @@ int main(void){
             int ID;
             ler>> ID;
             escreveAmigos(listaUsuariosRede, ID);
+
+        }else if(op == "imprimirMediaIdadeAmigos"){
+            int ID;
+            ler>> ID;
+            escreveAmigos(listaUsuariosRede, ID);
+            
         }
     }
 

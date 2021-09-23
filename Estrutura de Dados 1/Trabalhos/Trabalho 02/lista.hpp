@@ -183,6 +183,27 @@ bool insereL(Lista *lista, No *valor){
     return true;
 }
 
+bool imprimirMediaIdadeAmigos(Lista *lista, int ID){
+    ofstream escreve("saida.txt",ios::app);
+
+    if(!buscaL(lista, ID)){
+        escreve<<"Erro ao imprimir a média de idade dos amigos do usuário com ID "<<ID<<". O usuário não existe!"<<endl;
+    }
+
+    No *usuario = buscaL(lista, ID);
+
+    escreve<<"Média de idade dos amigos de "<<usuario->dado->nome<<" ("<<usuario->dado->ID<<"): ";
+    No *n = usuario->dado->amigos->inicio;
+    double soma;
+    while(n){
+        soma += usuario->dado->idade;
+        n = n->prox;
+    }
+    escreve<<soma/usuario->dado->amigos->tamanho;
+    escreve<<endl;
+    escreve.close();
+}
+
 #endif // _HPP_LISTA
 
 
