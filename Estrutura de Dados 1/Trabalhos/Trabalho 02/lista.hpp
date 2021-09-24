@@ -278,7 +278,6 @@ void imprimirAmigosEmComum(Lista *lista, int ID1, int ID2, int sexo){
                     if(n1->dado->ID == n2->dado->ID){
                         escreve<<n1->dado->nome<<" ("<<n1->dado->ID<<") ";
                     }
-                    cout<<"teste "<<n1->dado->ID<<" "<< n2->dado->ID<<endl;
                     n2 = n2->prox;
                 }
                 n1 = n1->prox;
@@ -296,7 +295,34 @@ void imprimirAmigosEmComum(Lista *lista, int ID1, int ID2, int sexo){
     escreve.close();
 }
 
+bool removeL(Lista *lista, Usuario *valor)
+{
+    No *anterior = nullptr;
+    No *atual = lista->inicio;
+
+    while(atual && atual->dado->ID != valor->ID){
+        anterior = atual;
+        atual = atual->prox;
+    }
+
+    if(!atual)
+        return false;
+    if (!anterior){
+        lista->inicio = atual->prox;
+        if (!lista->inicio) 
+            lista->fim = lista->inicio;
+    }
+    else{
+        anterior->prox = atual->prox;
+        if (!atual->prox)
+            lista->fim = anterior;
+    }
+    lista->tamanho--;
+
+    delete(atual);
+    return true;
+
+}
+
+
 #endif // _HPP_LISTA
-
-
-

@@ -42,50 +42,80 @@ void addAmigo(Lista *listaUsuariosRede, int ID1, int ID2){
         if(!insereOrdenado(usuario1->dado->amigos, usuario2->dado) || !insereOrdenado(usuario2->dado->amigos, usuario1->dado)){
             escreve<<"Erro ao criar amizade dos usuários com IDs "<< ID1 <<" e "<<ID2<<" !"<<endl;
         }else{
-            cout<<"\n"<<usuario1->dado->nome;
             escreve << "Os usuários " << usuario1->dado->nome << " (" << usuario1->dado->ID << ") e " << usuario2->dado->nome << " (" << usuario2->dado->ID << ") se tornaram amigos."<<endl;
         }
     }else{
         escreve<<"Erro ao criar amizade dos usuários com IDs "<< ID1 <<" e "<<ID2<<" !"<<endl;
-    }        
+    }   
+
+    escreve.close();     
 }
 
 
-void removerAmigo(Lista * listaUsuariosRede, int ID1, int ID2)
-{
-    //buscar usu�rio 1, passando por par�metro (listaUsuariosRede, ID1)
+void removerAmigo(Lista *listaUsuariosRede, int ID1, int ID2){
+    ofstream escreve("saida.txt", ios::app);
+    if(buscaL(listaUsuariosRede, ID1) && buscaL(listaUsuariosRede, ID2)){
+        No *usuario1 = buscaL(listaUsuariosRede, ID1);
+        No *usuario2 = buscaL(listaUsuariosRede, ID2);
 
-    //buscar usu�rio 2, passando por par�metro (listaUsuariosRede, ID2)
-
-
-    //removeL(usuario1->amigos, usu�rio2); //remove o n�
-    //removeL(usuario2->amigos, usu�rio1); //remove o n�
+        if(removeL(usuario1->dado->amigos, usuario2->dado) && removeL(usuario2->dado->amigos, usuario1->dado)){
+            escreve << "Os usuários "<<usuario1->dado->nome<<" ("<<usuario1->dado->ID<<") e "<<usuario2->dado->nome<<" ("<<usuario2->dado->ID<<") "<<" não são mais amigos"<<endl;
+        }else{
+            escreve<< "Erro ao excluir a relação de amigo com IDs "<<ID1<<" e "<<ID2<<". A amizade não existe!"<<endl;
+        }
+    }else{
+        escreve<< "Erro ao excluir a relação de amigo com IDs "<<ID1<<" e "<<ID2<<". Algum usuário não existe!"<<endl;
+    }
+    escreve.close();
 }
 
-void removerUsuarioRede(Lista * listaUsuariosRede, int ID1)
-{
-    //buscar usu�rio 1, passando por par�metro (listaUsuariosRede, ID1)
 
-    //Se Fernanda ser� removida, a amizada entre Fernanda e Pedro deve ser removida primeiro!
-    //removerTotasAmizades(usuario1);
+bool removerTodasAmizades(Lista *listaUsuariosRede, Lista *lista, int ID){
+    No *n = lista->inicio;
+    while (n){
+        if(buscaL(listaUsuariosRede, ID) && buscaL(listaUsuariosRede, n->dado->ID)){
+            No *usuario1 = buscaL(listaUsuariosRede, ID);
+            No *usuario2 = buscaL(listaUsuariosRede, n->dado->ID);
+            removeL(usuario1->dado->amigos, usuario2->dado);
+            removeL(usuario2->dado->amigos, usuario1->dado);
+        }
+        n = n->prox;
+    }
 
-
-    //removeL(listaUsuariosRede, usu�rio1); //remove o n�
-    //delete usu�rio1; //desaloca o usu�rio
+    return true;
 }
 
-void removerTodosUsariosRede(Lista * listaUsuariosRede)
-{
-    //chamar "removerUsuarioRede" para todos os usu�rios da rede...
+void removerUsuario(Lista * listaUsuariosRede, int ID1){
+    ofstream escreve("saida.txt", ios::app);
+    if(buscaL(listaUsuariosRede, ID1)){
+        No *usuario = buscaL(listaUsuariosRede, ID1);
+
+        if(removerTodasAmizades(listaUsuariosRede, usuario->dado->amigos, ID1)){
+            escreve<<"O usuário "<<usuario->dado->nome<<" ("<<usuario->dado->ID<<") foi excluído da rede."<<endl;
+            removeL(listaUsuariosRede, usuario->dado);
+            delete usuario;
+
+        }else{
+            escreve<<"Erro ao excluir o usuário com ID "<<ID1<<endl;
+        }
+    }else{
+        escreve<<"Erro ao excluir o usuário com ID "<<ID1<<". O usuário não existe!"<<endl;
+    }
+    escreve.close();
+}
+
+void removerTodosUsariosRede(Lista * listaUsuariosRede){
+    No *n = listaUsuariosRede->inicio;
+    while (n){
+        removerUsuario(listaUsuariosRede, n->dado->ID);
+        n = n->prox;
+    }
 }
 
 int main(void){
-
     setlocale(LC_ALL, "Portuguese");
 
     Lista *listaUsuariosRede = new Lista();
-
-    int aux=0;
     string op;
     ifstream ler("entrada.txt", ios::in);
     
@@ -132,6 +162,17 @@ int main(void){
             ler >> sexo;
 
             imprimirAmigosEmComum(listaUsuariosRede ,ID1, ID2, sexo);
+        }else if(op == "removerAmigo"){
+            int ID1;
+            int ID2;
+            ler >> ID1;
+            ler >> ID2;
+            removerAmigo(listaUsuariosRede, ID1, ID2);
+
+        }else if(op == "removerUsuario"){
+            int ID1;
+            ler >> ID1;
+            removerUsuario(listaUsuariosRede, ID1);
         }
     }
 

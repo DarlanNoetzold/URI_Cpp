@@ -27,8 +27,21 @@ Erro ao imprimir a média de idade dos amigos do usuário com ID 9. O usuário n
 Amigos em comum entre Joao (6) e Paulo (3) (todos os sexos): Pedro (4) Maria (7) 
 Amigos em comum entre Joao (6) e Paulo (3) (sexo masculino): Pedro (4) 
 Amigos em comum entre Joao (6) e Paulo (3) (sexo feminino): Maria (7) 
-Amigos em comum entre Joao (6) e Paulo (3) (todos os sexos): Pedro (4) Maria (7) 
-Amigos em comum entre Joao (6) e Paulo (3) (sexo masculino): Pedro (4) 
+Os usuários Pedro (4) e Paulo (3)  não são mais amigos
+Amigos em comum entre Joao (6) e Paulo (3) (todos os sexos): Maria (7) 
+Amigos em comum entre Joao (6) e Paulo (3) (sexo masculino): 
 Amigos em comum entre Joao (6) e Paulo (3) (sexo feminino): Maria (7) 
 Erro ao imprimir amigos em comum dos usuários com IDs 8 e 9 !
-Erro ao imprimir amigos em comum dos usuários com IDs 8 e 9 !
+O usuário Maria (7) foi excluído da rede.
+Usuários da rede: Paulo (3) Pedro (4) Joao (6) Francisco (30) 
+Amigos de Paulo (3): Joao (6) 
+Amigos de Pedro (4): Joao (6) 
+Amigos de Joao (6): Paulo (3) Pedro (4) 
+Amigos de Francisco (30): 
+Erro ao imprimir amigos do usuário com ID 7. O usuário não existe!
+Erro ao excluir o usuário com ID 7. O usuário não existe!
+Erro ao excluir a relação de amigo com IDs 4 e 3. A amizade não existe!
+Erro ao excluir a relação de amigo com IDs 9 e 8. Algum usuário não existe!
+O usuário teste (14) foi adicionado na rede.
+Usuários da rede: Paulo (3) Pedro (4) Joao (6) teste (14) Francisco (30) 
+Usuários da rede: Paulo (3) Pedro (4) Joao (6) teste (14) Francisco (30) 
