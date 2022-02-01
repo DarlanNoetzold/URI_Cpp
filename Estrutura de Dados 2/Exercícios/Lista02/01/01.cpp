@@ -9,7 +9,7 @@ int main()
     int menu = -1, num, valor;
 
     int marr[20][20] = {};
-    int arestPr, arestSeg;
+    int verticePr, verticeSeg;
 
     do
     {
@@ -36,12 +36,13 @@ int main()
         case 1:
             system("cls");
             cout<<"Digite o valor da primeira aresta: ";
-            cin>>arestPr;
+            cin>>verticePr;
 
             cout<<"Digite o valor da primeira aresta: ";
-            cin>>arestSeg;
+            cin>>verticeSeg;
 
-            marr[arestPr][arestSeg] = 1;
+            marr[verticePr][verticeSeg] = 1;
+            marr[verticeSeg][verticePr] = 1;
 
             getchar();
             break;
@@ -58,18 +59,29 @@ int main()
         case 3:
             system("cls");
 
-            cout<<"Digite o valor da primeira aresta: ";
-            cin>>arestPr;
+            cout<<"Digite o valor do primeiro vertice: ";
+            cin>>verticePr;
 
-            cout<<"Digite o valor da primeira aresta: ";
-            cin>>arestSeg;
-            
-            marr[arestPr][arestSeg] = 0;
-
+            cout<<"Digite o valor do segundo vertice: ";
+            cin>>verticeSeg;
+            if(marr[verticePr][verticeSeg] == 0)
+                cout<<"Aresta não existe";
+            else{
+                marr[verticePr][verticeSeg] = 0;
+                marr[verticeSeg][verticePr] = 0;
+            }
             getchar();
             break;
         case 4:
             system("cls");
+            cout<<"Digite o valor do vertice: ";
+            cin>>verticePr;
+
+            for (int i = 0; i < 20; i++){
+                for (int j = 0; j < 20; j++){
+
+                }
+            }
 
             getchar();
             break;
