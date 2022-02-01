@@ -78,16 +78,21 @@ int main()
             cin>>verticePr;
 
             for (int i = 0; i < 20; i++){
-                for (int j = 0; j < 20; j++){
-
-                }
+                if(marr[verticePr][i] == 1)
+                    cout<<i<<", ";
             }
 
             getchar();
             break;
         case 5:
             system("cls");
+            cout<<"Digite o valor do vertice: ";
+            cin>>verticePr;
 
+            for (int i = 0; i < 20; i++){
+                if(marr[verticePr][i] == 1)
+                    cout<<i<<", ";
+            }
             getchar();
             break;
         };
