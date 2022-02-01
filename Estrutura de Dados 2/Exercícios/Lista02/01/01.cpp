@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-    int menu = -1, num, valor;
+    int menu = -1, cont=0;
 
     int marr[20][20] = {};
     int verticePr, verticeSeg;
@@ -64,9 +64,10 @@ int main()
 
             cout<<"Digite o valor do segundo vertice: ";
             cin>>verticeSeg;
-            if(marr[verticePr][verticeSeg] == 0)
-                cout<<"Aresta não existe";
-            else{
+            if(marr[verticePr][verticeSeg] == 0){
+                cout<<"Aresta não existe!";
+                getchar();
+            }else{
                 marr[verticePr][verticeSeg] = 0;
                 marr[verticeSeg][verticePr] = 0;
             }
@@ -81,7 +82,7 @@ int main()
                 if(marr[verticePr][i] == 1)
                     cout<<i<<", ";
             }
-
+            getchar();
             getchar();
             break;
         case 5:
@@ -91,8 +92,10 @@ int main()
 
             for (int i = 0; i < 20; i++){
                 if(marr[verticePr][i] == 1)
-                    cout<<i<<", ";
+                    cont++;
             }
+            cout<<"O grau de "<<verticePr<<" eh de: "<<cont<<endl;
+            getchar();
             getchar();
             break;
         };
